@@ -1,0 +1,57 @@
+post:
+  operationId: handoffOtp
+  summary: Handoff Smart OTP
+  description: |-
+    Gửi yêu cầu nhận mã Smart OTP qua hình thức xác thực trên app DNSE, chỉ áp dụng cho các tài khoản đang sử dụng phương thức xác thực lớp thứ hai là Smart OTP.
+    Thông báo xác nhận chỉ gửi về thiết bị đăng ký Smart OTP của tài khoản.
+  parameters:
+    - $ref: ../../components/parameters/XApiKey.yaml
+    - $ref: ../../components/parameters/XAuxDate.yaml
+    - $ref: ../../components/parameters/XSignature.yaml
+    - name: version
+      in: header
+      required: false
+      description: API version (YYYY-MM-DD)
+      schema:
+        type: string
+  responses:
+    "200":
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              smartOtp:
+                type: string
+                description: Mã Smart OTP
+            example:
+              smartOtp: "798327"
+    "400":
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+              message:
+                type: string
+              status:
+                type: integer
+    "500":
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+              message:
+                type: string
+              status:
+                type: integer
+  tags:
+    - trading

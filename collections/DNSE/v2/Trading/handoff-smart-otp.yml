@@ -1,0 +1,33 @@
+info:
+  name: Handoff Smart OTP
+  type: http
+  seq: 18
+
+http:
+  method: POST
+  url: "{{baseUrl}}/registration/smart-otp/handoff"
+  headers:
+    - name: X-API-Key
+      value: "{{apiKey}}"
+    - name: X-Aux-Date
+      value: "{{auxDate}}"
+    - name: X-Signature
+      value: "{{signature}}"
+    - name: version
+      value: "{{version}}"
+  auth: inherit
+
+runtime:
+  variables:
+    - name: version
+      value: "2026-09-25"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Gửi yêu cầu nhận mã Smart OTP qua hình thức xác thực trên app DNSE, chỉ áp dụng cho các tài khoản đang sử dụng phương thức xác thực lớp thứ hai là Smart OTP.
+  Thông báo xác nhận chỉ gửi về thiết bị đăng ký Smart OTP của tài khoản.

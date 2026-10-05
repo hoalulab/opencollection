@@ -2,9 +2,15 @@ overlay: 1.0.0
 info:
   title: DNSE OpenAPI - Mintlify customization
   version: 2.0.0
-extends: ./dnse.openapi.yaml
+extends: dnse.openapi.yaml
 
 actions:
+  - target: "$.paths['/registration/smart-otp/handoff'].post"
+    update:
+      x-mint:
+        href: vi/dnse/openapi/trading/handoff-smart-otp
+        metadata:
+          sidebarTitle: Handoff Smart OTP
   - target: "$.paths['/registration/send-email-otp'].post"
     update:
       x-mint:
@@ -155,6 +161,12 @@ actions:
         href: vi/dnse/openapi/market/get-history-trades
         metadata:
           sidebarTitle: Lịch sử khớp lệnh
+  - target: "$.paths['/price/{symbol}/trades/volume-profile'].get"
+    update:
+      x-mint:
+        href: vi/dnse/openapi/market/get-volume-profile
+        metadata:
+          sidebarTitle: Lịch sử khớp lệnh theo bước giá
   - target: "$.paths['/price/{symbol}/trades/latest'].get"
     update:
       x-mint:

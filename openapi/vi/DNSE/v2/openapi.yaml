@@ -23,6 +23,9 @@ paths:
   /registration/send-email-otp:
     $ref: paths/trading/registration_sendEmailOtp.yaml
 
+  /registration/smart-otp/handoff:
+    $ref: paths/trading/registration_handoffSmartOtp.yaml
+
   /registration/trading-token:
     $ref: paths/trading/registration_getTradingToken.yaml
 
@@ -85,6 +88,9 @@ paths:
 
   /price/{symbol}/trades:
     $ref: "./paths/market/symbol_getTrades.yaml"
+
+  /price/{symbol}/trades/volume-profile:
+    $ref: "./paths/market/symbol_getVolumeProfile.yaml"
 
   /price/{symbol}/trades/latest:
     $ref: paths/market/symbol_getTradesLatest.yaml

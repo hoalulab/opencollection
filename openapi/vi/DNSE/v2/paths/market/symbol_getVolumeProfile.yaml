@@ -1,0 +1,118 @@
+get:
+  operationId: symbol_getVolumeProfile
+  summary: Lịch sử khớp lệnh theo bước giá
+  description: Thống kê khối lượng mua và bán chủ động tại từng mức giá trong ngày giao dịch.
+  parameters:
+    - $ref: ../../components/parameters/XApiKey.yaml
+    - $ref: ../../components/parameters/XAuxDate.yaml
+    - $ref: ../../components/parameters/XSignature.yaml
+    - name: version
+      in: header
+      required: false
+      description: API version (YYYY-MM-DD)
+      schema:
+        type: string
+    - name: symbol
+      in: path
+      required: true
+      description: Mã chứng khoán
+      schema:
+        type: string
+    - name: boardId
+      in: query
+      required: false
+      description: |-
+        Mã bảng giao dịch
+        - G1: Lô chẵn
+        - G4: Lô lẻ
+        - T1: Thỏa thuận trong giờ (9h - 14h45)
+        - T3: Thỏa thuận sau giờ (14h45 - 15h)
+        - T4: Thỏa thuận lô lẻ trong giờ (9h - 14h45)
+        - T6: Thỏa thuận lô lẻ sau giờ  (14h45 - 15h)
+      schema: {}
+    - name: time
+      in: query
+      required: false
+      description: Ngày giao dịch cần lấy dữ liệu (YYYY-MM-DD)
+      schema: {}
+  responses:
+    "200":
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              volumeProfile:
+                type: array
+                description: Danh sách khối lượng mua bán chủ động được phân bổ theo từng mức giá
+                items:
+                  type: object
+                  properties:
+                    accumulatedVol:
+                      type: integer
+                      format: int32
+                      description: Khối lượng giao dịch lũy kế tại mức giá
+                    boardId:
+                      type: string
+                      description: Mã bảng giao dịch
+                    buyVol:
+                      type: integer
+                      format: int32
+                      description: Khối lượng mua chủ động tại mức giá.
+                    price:
+                      type: number
+                      format: double
+                      description: Mức giá giao dịch (đơn vị nghìn đồng)
+                    sellVol:
+                      type: integer
+                      format: int32
+                      description: Khối lượng bán chủ động tại mức giá
+                    symbol:
+                      type: string
+                      description: Mã chứng khoán
+                    time:
+                      type: string
+                      description: Ngày giao dịch
+                    unknownVol:
+                      type: integer
+                      format: int32
+                      description: Khối lượng giao dịch chưa xác định được bên chủ động.
+            example:
+              volumeProfile:
+                - accumulatedVol: 241690
+                  boardId: G1
+                  buyVol: 68720
+                  price: 21.35
+                  sellVol: 172970
+                  symbol: ACB
+                  time: "2026-09-25"
+                  unknownVol: 0
+    "400":
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+              message:
+                type: string
+              status:
+                type: integer
+    "500":
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+              message:
+                type: string
+              status:
+                type: integer
+  tags:
+    - market
