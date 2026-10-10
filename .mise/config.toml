@@ -1,6 +1,6 @@
 [tools]
 gitleaks = "8.30.1"
-oxfmt = "0.70.0"
+oxfmt = "0.71.0"
 
 [tasks."gitleaks"]
 run = "gitleaks dir -v"
