@@ -1,0 +1,41 @@
+get:
+  operationId: indicesGetBreadth
+  tags:
+    - market-data
+  summary: Độ rộng theo chỉ số (phiên hiện tại)
+  description: |
+    Số mã tăng / giảm / đứng giá và số mã trần / sàn trong universe của một chỉ số ở phiên hiện tại.
+
+    `limit_up` là tập con của `advancers`, `limit_down` là tập con của `decliners`; mã không giao dịch không rơi vào nhóm nào, nên ba nhóm không cộng lại bằng `total`.
+  parameters:
+    - name: symbol
+      in: path
+      required: true
+      description: Mã chỉ số. Chỉ các chỉ số có membership tra được mới dùng được ở nhóm endpoint này; chỉ số quốc tế không được hỗ trợ.
+      schema:
+        type: string
+        enum: [VNINDEX, HNXINDEX, UPCOMINDEX, VN30, HNX30]
+        example: VNINDEX
+  responses:
+    '200':
+      description: '`data` là độ rộng của chỉ số trong phiên hiện tại.'
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/market/IndexBreadthResponse.yaml
+    '400':
+      $ref: ../../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../../components/responses/Unauthorized.yaml
+    '404':
+      $ref: ../../components/responses/NotFound.yaml
+    '429':
+      $ref: ../../components/responses/RateLimited.yaml
+    '500':
+      $ref: ../../components/responses/InternalError.yaml
+  x-codeSamples:
+    - lang: bash
+      label: cURL
+      source: |
+        curl -H "X-FH-APIKEY: $FINHAY_API_KEY" \
+          "https://open-api.fhsc.com.vn/market/indices/VNINDEX/breadth"

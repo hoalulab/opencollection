@@ -1,0 +1,49 @@
+type: object
+description: Độ rộng trong universe của một chỉ số tại phiên hiện tại.
+required:
+  - index
+  - name
+  - advancers
+  - decliners
+  - unchanged
+  - limit_up
+  - limit_down
+  - total
+properties:
+  index:
+    type: string
+    description: Mã chỉ số.
+    example: VNINDEX
+  name:
+    type: string
+    description: Tên chỉ số.
+    example: VN-Index
+  advancers:
+    type: integer
+    description: Số mã tăng giá.
+    example: 142
+  decliners:
+    type: integer
+    description: Số mã giảm giá.
+    example: 131
+  unchanged:
+    type: integer
+    description: Số mã đứng giá.
+    example: 44
+  limit_up:
+    type: integer
+    description: Số mã tăng trần (là tập con của `advancers`).
+    example: 9
+  limit_down:
+    type: integer
+    description: Số mã giảm sàn (là tập con của `decliners`).
+    example: 4
+  total:
+    type: integer
+    description: Tổng số mã trong universe. Mã không giao dịch không rơi vào nhóm tăng/giảm/đứng nào, nên ba nhóm không nhất thiết cộng lại bằng `total`.
+    example: 394
+  updated_at:
+    type: [string, 'null']
+    format: date-time
+    description: 'Thời điểm dữ liệu được làm mới lần cuối (ISO 8601 kèm offset), không phải lúc gọi API. `null` khi nguồn không ghi thời điểm.'
+    example: '2026-08-17T14:30:15+07:00'

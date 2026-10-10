@@ -47,6 +47,23 @@ get:
         maximum: 5
         default: 5
         example: 5
+    - name: page
+      in: query
+      required: false
+      description: Trang cần lấy, tính theo kỳ báo cáo (mỗi trang `limit` kỳ). Mặc định `1`; trang 1 là các kỳ gần nhất, trang sau lùi về quá khứ. Hết dữ liệu khi trả về ít kỳ hơn kích thước trang.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+        example: 2
+    - name: year
+      in: query
+      required: false
+      description: 'Chỉ lấy kỳ của năm này: `period=annual` trả 1 row, `period=quarterly` trả các quý của năm (quý mới nhất trước).'
+      schema:
+        type: integer
+        minimum: 1
+        example: 2023
   responses:
     "200":
       description: Trả về `data` mảng các kỳ báo cáo theo format wide — mỗi row là 1 kỳ; metric code khác nhau giữa income-statement / balance-sheet / cash-flow.

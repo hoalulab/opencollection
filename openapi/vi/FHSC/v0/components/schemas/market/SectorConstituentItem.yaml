@@ -1,0 +1,33 @@
+type: object
+description: Một mã thuộc ngành.
+required:
+  - symbol
+properties:
+  symbol:
+    type: string
+    description: Mã cổ phiếu.
+    example: VCB
+  name:
+    type:
+      - string
+      - 'null'
+    description: Tên doanh nghiệp.
+    example: Ngân hàng TMCP Ngoại thương Việt Nam
+  exchange:
+    type:
+      - string
+      - 'null'
+    description: Sàn niêm yết.
+    example: HOSE
+  weight_percent:
+    type:
+      - number
+      - 'null'
+    description: Tỷ trọng của mã trong ngành, theo vốn hoá (%).
+    example: 18.42
+  market_cap:
+    type:
+      - number
+      - 'null'
+    description: Vốn hoá của mã (VND), tính từ quote hiện tại.
+    example: 512000000000000

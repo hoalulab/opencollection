@@ -1,0 +1,13 @@
+type: object
+description: Details của Chuyển đổi cổ phiếu sang cổ phiếu.
+properties:
+  conversion_ratio:
+    anyOf:
+      - $ref: Ratio.yaml
+      - type: 'null'
+    description: Tỷ lệ chuyển đổi.
+  to_symbol:
+    type:
+      - string
+      - 'null'
+    description: Mã giao dịch cổ phiếu đích.

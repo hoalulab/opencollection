@@ -1,0 +1,18 @@
+type: object
+description: Details của Trả lãi trái phiếu.
+properties:
+  interest_rate:
+    type:
+      - number
+      - 'null'
+    description: Lãi suất (%/kỳ).
+  interest_period:
+    type:
+      - number
+      - 'null'
+    description: Kỳ trả lãi.
+  par_value:
+    type:
+      - number
+      - 'null'
+    description: Mệnh giá trái phiếu.

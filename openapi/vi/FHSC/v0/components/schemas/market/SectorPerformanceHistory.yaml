@@ -1,0 +1,15 @@
+type: object
+description: Chuỗi chỉ số ngành theo phiên. Chưa phân trang.
+required:
+  - sector
+  - items
+properties:
+  sector:
+    type: string
+    description: Slug ngành.
+    example: financials
+  items:
+    type: array
+    description: Chuỗi bar theo phiên.
+    items:
+      $ref: "SectorPerformanceBar.yaml"

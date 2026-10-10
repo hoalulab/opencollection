@@ -1,0 +1,19 @@
+type: object
+description: Tỷ lệ dạng "base/entitled" (vd "100/10"), mô hình hoá thành object để client tính trực tiếp thay vì parse chuỗi.
+required:
+  - display
+  - base
+  - entitled
+properties:
+  display:
+    type: string
+    description: Dạng hiển thị gốc.
+    example: 100/10
+  base:
+    type: number
+    description: Số lượng sở hữu (vế trái).
+    example: 100
+  entitled:
+    type: number
+    description: Số lượng được hưởng (vế phải).
+    example: 10

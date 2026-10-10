@@ -1,0 +1,41 @@
+get:
+  operationId: indicesGetForeignTrading
+  tags:
+    - market-data
+  summary: Khối ngoại theo chỉ số (phiên gần nhất)
+  description: |
+    Tổng mua / bán / ròng của khối ngoại trên toàn universe của một chỉ số trong phiên gần nhất có dữ liệu — VNINDEX ≈ toàn sàn HOSE, VN30 chỉ gồm 30 mã trong rổ.
+
+    Trả lời "khối ngoại mua ròng BAO NHIÊU trên sàn". Muốn biết MÃ NÀO thì dùng screener `GET /market/stocks` với `index`/`exchange` + `sort=-foreign_net_value`.
+  parameters:
+    - name: symbol
+      in: path
+      required: true
+      description: Mã chỉ số. Chỉ các chỉ số có membership tra được mới dùng được ở nhóm endpoint này; chỉ số quốc tế không được hỗ trợ.
+      schema:
+        type: string
+        enum: [VNINDEX, HNXINDEX, UPCOMINDEX, VN30, HNX30]
+        example: VNINDEX
+  responses:
+    '200':
+      description: '`data` là dòng tiền khối ngoại cộng dồn của chỉ số trong phiên.'
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/market/IndexForeignTradingResponse.yaml
+    '400':
+      $ref: ../../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../../components/responses/Unauthorized.yaml
+    '404':
+      $ref: ../../components/responses/NotFound.yaml
+    '429':
+      $ref: ../../components/responses/RateLimited.yaml
+    '500':
+      $ref: ../../components/responses/InternalError.yaml
+  x-codeSamples:
+    - lang: bash
+      label: cURL
+      source: |
+        curl -H "X-FH-APIKEY: $FINHAY_API_KEY" \
+          "https://open-api.fhsc.com.vn/market/indices/VNINDEX/trading/foreign"

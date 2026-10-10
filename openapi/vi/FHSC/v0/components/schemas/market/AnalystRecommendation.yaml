@@ -1,0 +1,8 @@
+type: string
+description: Khuyến nghị đã chuẩn hoá.
+enum:
+  - BUY
+  - SELL
+  - NEUTRAL
+  - OTHER
+example: BUY

@@ -1,0 +1,66 @@
+get:
+  operationId: sectorsGetForeignTradingHistory
+  tags:
+    - market-data
+  summary: Lịch sử khối ngoại theo ngành
+  description: |
+    Chuỗi mua / bán / ròng của khối ngoại theo phiên, cộng dồn trên toàn bộ mã của một ngành. Phiên không có giao dịch bị bỏ qua.
+  parameters:
+    - name: slug
+      in: path
+      required: true
+      description: Slug ngành cấp 1. Tra danh sách hợp lệ qua `GET /market/sectors`.
+      schema:
+        type: string
+        enum:
+          - technology
+          - telecommunications
+          - healthcare
+          - financials
+          - real-estate
+          - consumer-discretionary
+          - consumer-staples
+          - industrials
+          - basic-materials
+          - energy
+          - utilities
+        example: financials
+    - name: from
+      in: query
+      required: false
+      description: Ngày bắt đầu (`YYYY-MM-DD`), tính cả ngày này. Bỏ trống cả `from` lẫn `to` → 3 tháng gần nhất. Khoảng tối đa 5 năm.
+      schema:
+        type: string
+        format: date
+        example: "2026-05-17"
+    - name: to
+      in: query
+      required: false
+      description: Ngày kết thúc (`YYYY-MM-DD`), tính cả ngày này. Bỏ trống → hôm nay.
+      schema:
+        type: string
+        format: date
+        example: "2026-08-17"
+  responses:
+    "200":
+      description: "`data.data` là chuỗi bar theo phiên."
+      content:
+        application/json:
+          schema:
+            $ref: "../../components/schemas/market/SectorForeignTradingHistoryResponse.yaml"
+    "400":
+      $ref: "../../components/responses/BadRequest.yaml"
+    "401":
+      $ref: "../../components/responses/Unauthorized.yaml"
+    "404":
+      $ref: "../../components/responses/NotFound.yaml"
+    "429":
+      $ref: "../../components/responses/RateLimited.yaml"
+    "500":
+      $ref: "../../components/responses/InternalError.yaml"
+  x-codeSamples:
+    - lang: bash
+      label: cURL
+      source: |
+        curl -H "X-FH-APIKEY: $FINHAY_API_KEY" \
+          "https://open-api.fhsc.com.vn/market/sectors/financials/trading/foreign/history?from=2026-05-17&to=2026-08-17"

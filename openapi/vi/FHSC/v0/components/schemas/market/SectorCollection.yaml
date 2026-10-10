@@ -1,0 +1,33 @@
+type: object
+description: Bảng so sánh liên ngành, đã phân trang.
+required:
+  - items
+properties:
+  window:
+    type: string
+    description: Cửa sổ luỹ kế đã áp dụng.
+    example: 1D
+  updated_at:
+    type:
+      - string
+      - 'null'
+    format: date-time
+    description: Thời điểm dữ liệu được làm mới lần cuối (ISO 8601 kèm offset), không phải lúc gọi API. `null` khi nguồn không ghi thời điểm.
+    example: '2026-08-17T14:30:15+07:00'
+  page:
+    type: integer
+    description: Trang hiện tại.
+    example: 1
+  page_size:
+    type: integer
+    description: Số ngành mỗi trang.
+    example: 20
+  total:
+    type: integer
+    description: Tổng số ngành khớp bộ lọc.
+    example: 11
+  items:
+    type: array
+    description: Danh sách ngành.
+    items:
+      $ref: "SectorSummaryItem.yaml"

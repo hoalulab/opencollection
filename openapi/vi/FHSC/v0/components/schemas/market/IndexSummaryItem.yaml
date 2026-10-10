@@ -1,0 +1,59 @@
+type: object
+description: 'Một dòng của bảng chỉ số. Chỉ chứa các field được chọn qua `fields` (mặc định `index`, `name`, `index_value`, `change_percent`), cộng thêm field dùng trong `sort`/filter.'
+properties:
+  index:
+    type: string
+    description: Mã chỉ số.
+    example: VNINDEX
+  name:
+    type: string
+    description: Tên chỉ số.
+    example: VN-Index
+  exchange:
+    type: [string, 'null']
+    description: Sàn của chỉ số. `null` với các chỉ số quốc tế.
+    example: HOSE
+  index_value:
+    type: [number, 'null']
+    description: Điểm chỉ số.
+    example: 1284.32
+  change:
+    type: [number, 'null']
+    description: Thay đổi tuyệt đối so với tham chiếu (điểm).
+    example: 11.17
+  change_percent:
+    type: [number, 'null']
+    description: Thay đổi so với tham chiếu (%), theo `window`.
+    example: 0.88
+  market_cap:
+    type: [number, 'null']
+    description: Vốn hoá của rổ / của sàn (VND).
+    example: 5430000000000000
+  constituent_count:
+    type: [number, 'null']
+    description: Số mã trong rổ. Chỉ số toàn thị trường đếm mọi mã niêm yết trên sàn, nên không so sánh trực tiếp được với rổ chọn lọc như VN30.
+    example: 30
+  advancers:
+    type: [number, 'null']
+    description: Số mã tăng giá.
+    example: 142
+  decliners:
+    type: [number, 'null']
+    description: Số mã giảm giá.
+    example: 131
+  unchanged:
+    type: [number, 'null']
+    description: Số mã đứng giá.
+    example: 44
+  volume:
+    type: [number, 'null']
+    description: Khối lượng khớp trong `window`.
+    example: 728450000
+  trading_value:
+    type: [number, 'null']
+    description: Giá trị khớp trong `window` (VND).
+    example: 18700000000000
+  foreign_net_value:
+    type: [number, 'null']
+    description: Giá trị mua ròng của khối ngoại trong `window` (VND). Âm là bán ròng.
+    example: -684000000000

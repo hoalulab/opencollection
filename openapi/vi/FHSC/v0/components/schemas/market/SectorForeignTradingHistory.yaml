@@ -1,0 +1,15 @@
+type: object
+description: Chuỗi dòng tiền khối ngoại theo phiên của một ngành. Phiên không có giao dịch bị bỏ qua; chưa phân trang.
+required:
+  - sector
+  - data
+properties:
+  sector:
+    type: string
+    description: Slug ngành.
+    example: financials
+  data:
+    type: array
+    description: Chuỗi bar theo phiên.
+    items:
+      $ref: "AggregateTradingFlowBar.yaml"

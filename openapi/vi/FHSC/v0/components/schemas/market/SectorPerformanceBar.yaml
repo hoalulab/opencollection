@@ -1,0 +1,46 @@
+type: object
+description: Một phiên trong chuỗi chỉ số ngành.
+required:
+  - date
+properties:
+  date:
+    type: string
+    format: date
+    description: Ngày của phiên (`YYYY-MM-DD`).
+    example: '2026-08-14'
+  open:
+    type:
+      - number
+      - 'null'
+    description: Điểm mở cửa.
+    example: 1275.1
+  high:
+    type:
+      - number
+      - 'null'
+    description: Điểm cao nhất.
+    example: 1289.44
+  low:
+    type:
+      - number
+      - 'null'
+    description: Điểm thấp nhất.
+    example: 1272.85
+  close:
+    type:
+      - number
+      - 'null'
+    description: Điểm đóng cửa.
+    example: 1284.32
+  volume:
+    type:
+      - number
+      - 'null'
+    description: Khối lượng khớp trong phiên.
+    example: 128450000
+  trading_value:
+    type:
+      - number
+      - 'null'
+    description: Giá trị khớp trong phiên (VND).
+    example: 3870000000000

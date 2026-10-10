@@ -23,12 +23,6 @@ actions:
         href: vi/fhsc/openapi/macroeconomics/get-bank-interest-rates
         metadata:
           sidebarTitle: "Lãi suất tiền gửi ngân hàng"
-  - target: "$.paths['/market/recommendation-reports/{symbol}'].get"
-    update:
-      x-mint:
-        href: vi/fhsc/openapi/news-events/get-recommendation-reports
-        metadata:
-          sidebarTitle: "Báo cáo khuyến nghị theo stock"
   - target: "$.paths['/market/company-financial/overview'].get"
     update:
       x-mint:
@@ -413,3 +407,99 @@ actions:
         href: vi/fhsc/openapi/market-data/stocks-get-order-statistic-history
         metadata:
           sidebarTitle: "Lịch sử lệnh mua/bán chủ động"
+  - target: "$.paths['/market/quotes/stocks/{symbol}/order-book/history'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/market-data/quotes-get-stock-order-book-history
+        metadata:
+          sidebarTitle: "Lịch sử sổ lệnh cổ phiếu trong phiên"
+  - target: "$.paths['/market/stocks/{symbol}/trading/insider'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/news-events/stocks-get-insider-trades
+        metadata:
+          sidebarTitle: "Giao dịch nội bộ / cổ đông lớn"
+  - target: "$.paths['/market/stocks/{symbol}/events'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/news-events/stocks-get-events
+        metadata:
+          sidebarTitle: "Sự kiện quyền của stock"
+  - target: "$.paths['/market/stocks/{symbol}/analyst-reports'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/news-events/stocks-get-analyst-reports
+        metadata:
+          sidebarTitle: "Báo cáo phân tích của stock"
+  - target: "$.paths['/market/indices'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/market-data/indices-list
+        metadata:
+          sidebarTitle: "Bảng so sánh các chỉ số"
+  - target: "$.paths['/market/indices/{symbol}/breadth'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/market-data/indices-get-breadth
+        metadata:
+          sidebarTitle: "Độ rộng theo chỉ số (phiên hiện tại)"
+  - target: "$.paths['/market/indices/{symbol}/constituents'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/market-data/indices-get-constituents
+        metadata:
+          sidebarTitle: "Rổ cấu phần chỉ số"
+  - target: "$.paths['/market/indices/{symbol}/trading/foreign'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/market-data/indices-get-foreign-trading
+        metadata:
+          sidebarTitle: "Khối ngoại theo chỉ số (phiên gần nhất)"
+  - target: "$.paths['/market/indices/{symbol}/trading/foreign/history'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/market-data/indices-get-foreign-trading-history
+        metadata:
+          sidebarTitle: "Lịch sử khối ngoại theo chỉ số"
+  - target: "$.paths['/market/sectors'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/market-data/sectors-list
+        metadata:
+          sidebarTitle: "Bảng so sánh các ngành"
+  - target: "$.paths['/market/sectors/{slug}/breadth'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/market-data/sectors-get-breadth
+        metadata:
+          sidebarTitle: "Độ rộng ngành (phiên hiện tại)"
+  - target: "$.paths['/market/sectors/{slug}/constituents'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/market-data/sectors-get-constituents
+        metadata:
+          sidebarTitle: "Danh sách mã trong ngành"
+  - target: "$.paths['/market/sectors/{slug}/performance'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/market-data/sectors-get-performance
+        metadata:
+          sidebarTitle: "Chỉ số ngành (phiên hiện tại)"
+  - target: "$.paths['/market/sectors/{slug}/performance/history'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/market-data/sectors-get-performance-history
+        metadata:
+          sidebarTitle: "Lịch sử chỉ số ngành"
+  - target: "$.paths['/market/sectors/{slug}/trading/foreign'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/market-data/sectors-get-foreign-trading
+        metadata:
+          sidebarTitle: "Khối ngoại theo ngành (phiên gần nhất)"
+  - target: "$.paths['/market/sectors/{slug}/trading/foreign/history'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/market-data/sectors-get-foreign-trading-history
+        metadata:
+          sidebarTitle: "Lịch sử khối ngoại theo ngành"

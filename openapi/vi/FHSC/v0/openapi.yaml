@@ -84,6 +84,10 @@ tags:
       Tier 2 HMAC đầy đủ + `X-FH-BODYHASH` + `X-FH-2FA-TOKEN` (daily 2FA
       session).
     x-group: Thực thi lệnh
+  - name: Bảng giá thị trường
+    description: Giá realtime, lịch sử, chỉ số và phân tích ngành cho các nhóm tài sản thị trường.
+  - name: Tin tức-sự kiện
+    description: Tin tức, sự kiện quyền, giao dịch nội bộ và báo cáo phân tích.
 paths:
   /users/v1/users/me:
     $ref: "./paths/users/bootstrapGetMe.yaml"
@@ -93,9 +97,6 @@ paths:
 
   /market/financial-data/bank-interest-rates:
     $ref: "./paths/market/macroGetBankInterestRates.yaml"
-
-  /market/recommendation-reports/{symbol}:
-    $ref: "./paths/market/corporateGetRecommendationReports.yaml"
 
   /market/company-financial/overview:
     $ref: "./paths/market/fundamentalGetOverview.yaml"
@@ -285,6 +286,53 @@ paths:
 
   /market/stocks/{symbol}/trading/orders/history:
     $ref: "./paths/market/stocksGetOrderStatisticHistory.yaml"
+  /market/quotes/stocks/{symbol}/order-book/history:
+    $ref: "./paths/market/quotesGetStockOrderBookHistory.yaml"
+
+  /market/stocks/{symbol}/trading/insider:
+    $ref: "./paths/market/stocksGetInsiderTrades.yaml"
+
+  /market/stocks/{symbol}/events:
+    $ref: "./paths/market/stocksGetEvents.yaml"
+
+  /market/stocks/{symbol}/analyst-reports:
+    $ref: "./paths/market/stocksGetAnalystReports.yaml"
+
+  /market/indices:
+    $ref: "./paths/market/indicesList.yaml"
+
+  /market/indices/{symbol}/breadth:
+    $ref: "./paths/market/indicesGetBreadth.yaml"
+
+  /market/indices/{symbol}/constituents:
+    $ref: "./paths/market/indicesGetConstituents.yaml"
+
+  /market/indices/{symbol}/trading/foreign:
+    $ref: "./paths/market/indicesGetForeignTrading.yaml"
+
+  /market/indices/{symbol}/trading/foreign/history:
+    $ref: "./paths/market/indicesGetForeignTradingHistory.yaml"
+
+  /market/sectors:
+    $ref: "./paths/market/sectorsList.yaml"
+
+  /market/sectors/{slug}/breadth:
+    $ref: "./paths/market/sectorsGetBreadth.yaml"
+
+  /market/sectors/{slug}/constituents:
+    $ref: "./paths/market/sectorsGetConstituents.yaml"
+
+  /market/sectors/{slug}/performance:
+    $ref: "./paths/market/sectorsGetPerformance.yaml"
+
+  /market/sectors/{slug}/performance/history:
+    $ref: "./paths/market/sectorsGetPerformanceHistory.yaml"
+
+  /market/sectors/{slug}/trading/foreign:
+    $ref: "./paths/market/sectorsGetForeignTrading.yaml"
+
+  /market/sectors/{slug}/trading/foreign/history:
+    $ref: "./paths/market/sectorsGetForeignTradingHistory.yaml"
 components:
   securitySchemes:
     FinhayApiKey:
@@ -320,12 +368,6 @@ components:
       $ref: "./components/schemas/market/BankInterestRatesResponse.yaml"
     EconomicCountry:
       $ref: "./components/schemas/market/EconomicCountry.yaml"
-    IndexRecommendationReport:
-      $ref: "./components/schemas/market/IndexRecommendationReport.yaml"
-    RecommendationReport:
-      $ref: "./components/schemas/market/RecommendationReport.yaml"
-    RecommendationReportsResponse:
-      $ref: "./components/schemas/market/RecommendationReportsResponse.yaml"
     Resolution:
       $ref: "./components/schemas/market/Resolution.yaml"
     FinancialOverview:
@@ -642,6 +684,124 @@ components:
       $ref: "./components/schemas/market/StockOrderStatisticHistory.yaml"
     StockOrderStatisticHistoryResponse:
       $ref: "./components/schemas/market/StockOrderStatisticHistoryResponse.yaml"
+    QuoteOrderBookHistoryEntry:
+      $ref: "./components/schemas/market/QuoteOrderBookHistoryEntry.yaml"
+    QuoteOrderBookHistory:
+      $ref: "./components/schemas/market/QuoteOrderBookHistory.yaml"
+    QuoteOrderBookHistoryResponse:
+      $ref: "./components/schemas/market/QuoteOrderBookHistoryResponse.yaml"
+    InsiderTradeSide:
+      $ref: "./components/schemas/market/InsiderTradeSide.yaml"
+    InsiderTradeStatus:
+      $ref: "./components/schemas/market/InsiderTradeStatus.yaml"
+    StockInsiderTrade:
+      $ref: "./components/schemas/market/StockInsiderTrade.yaml"
+    StockInsiderTradeList:
+      $ref: "./components/schemas/market/StockInsiderTradeList.yaml"
+    StockInsiderTradeListResponse:
+      $ref: "./components/schemas/market/StockInsiderTradeListResponse.yaml"
+    RightEventType:
+      $ref: "./components/schemas/market/RightEventType.yaml"
+    Ratio:
+      $ref: "./components/schemas/market/Ratio.yaml"
+    ShareholderMeetingDetails:
+      $ref: "./components/schemas/market/ShareholderMeetingDetails.yaml"
+    CashDividendDetails:
+      $ref: "./components/schemas/market/CashDividendDetails.yaml"
+    StockDividendDetails:
+      $ref: "./components/schemas/market/StockDividendDetails.yaml"
+    RightsOfferingDetails:
+      $ref: "./components/schemas/market/RightsOfferingDetails.yaml"
+    BondInterestDetails:
+      $ref: "./components/schemas/market/BondInterestDetails.yaml"
+    BondPrincipalInterestDetails:
+      $ref: "./components/schemas/market/BondPrincipalInterestDetails.yaml"
+    BondToStockConversionDetails:
+      $ref: "./components/schemas/market/BondToStockConversionDetails.yaml"
+    StockToStockConversionDetails:
+      $ref: "./components/schemas/market/StockToStockConversionDetails.yaml"
+    BonusShareDetails:
+      $ref: "./components/schemas/market/BonusShareDetails.yaml"
+    ConvertibleBondOptionDetails:
+      $ref: "./components/schemas/market/ConvertibleBondOptionDetails.yaml"
+    CoveredWarrantSettlementDetails:
+      $ref: "./components/schemas/market/CoveredWarrantSettlementDetails.yaml"
+    RightEventDetails:
+      $ref: "./components/schemas/market/RightEventDetails.yaml"
+    RightEvent:
+      $ref: "./components/schemas/market/RightEvent.yaml"
+    RightEventList:
+      $ref: "./components/schemas/market/RightEventList.yaml"
+    RightEventListResponse:
+      $ref: "./components/schemas/market/RightEventListResponse.yaml"
+    AnalystRecommendation:
+      $ref: "./components/schemas/market/AnalystRecommendation.yaml"
+    StockAnalystReport:
+      $ref: "./components/schemas/market/StockAnalystReport.yaml"
+    StockAnalystReportList:
+      $ref: "./components/schemas/market/StockAnalystReportList.yaml"
+    StockAnalystReportListResponse:
+      $ref: "./components/schemas/market/StockAnalystReportListResponse.yaml"
+    IndexSummaryItem:
+      $ref: "./components/schemas/market/IndexSummaryItem.yaml"
+    IndexCollection:
+      $ref: "./components/schemas/market/IndexCollection.yaml"
+    IndexCollectionResponse:
+      $ref: "./components/schemas/market/IndexCollectionResponse.yaml"
+    IndexBreadth:
+      $ref: "./components/schemas/market/IndexBreadth.yaml"
+    IndexBreadthResponse:
+      $ref: "./components/schemas/market/IndexBreadthResponse.yaml"
+    IndexConstituentItem:
+      $ref: "./components/schemas/market/IndexConstituentItem.yaml"
+    IndexConstituents:
+      $ref: "./components/schemas/market/IndexConstituents.yaml"
+    IndexConstituentsResponse:
+      $ref: "./components/schemas/market/IndexConstituentsResponse.yaml"
+    IndexForeignTrading:
+      $ref: "./components/schemas/market/IndexForeignTrading.yaml"
+    IndexForeignTradingResponse:
+      $ref: "./components/schemas/market/IndexForeignTradingResponse.yaml"
+    AggregateTradingFlowBar:
+      $ref: "./components/schemas/market/AggregateTradingFlowBar.yaml"
+    IndexForeignTradingHistory:
+      $ref: "./components/schemas/market/IndexForeignTradingHistory.yaml"
+    IndexForeignTradingHistoryResponse:
+      $ref: "./components/schemas/market/IndexForeignTradingHistoryResponse.yaml"
+    SectorSummaryItem:
+      $ref: "./components/schemas/market/SectorSummaryItem.yaml"
+    SectorCollection:
+      $ref: "./components/schemas/market/SectorCollection.yaml"
+    SectorCollectionResponse:
+      $ref: "./components/schemas/market/SectorCollectionResponse.yaml"
+    SectorBreadth:
+      $ref: "./components/schemas/market/SectorBreadth.yaml"
+    SectorBreadthResponse:
+      $ref: "./components/schemas/market/SectorBreadthResponse.yaml"
+    SectorConstituentItem:
+      $ref: "./components/schemas/market/SectorConstituentItem.yaml"
+    SectorConstituents:
+      $ref: "./components/schemas/market/SectorConstituents.yaml"
+    SectorConstituentsResponse:
+      $ref: "./components/schemas/market/SectorConstituentsResponse.yaml"
+    SectorPerformance:
+      $ref: "./components/schemas/market/SectorPerformance.yaml"
+    SectorPerformanceResponse:
+      $ref: "./components/schemas/market/SectorPerformanceResponse.yaml"
+    SectorPerformanceBar:
+      $ref: "./components/schemas/market/SectorPerformanceBar.yaml"
+    SectorPerformanceHistory:
+      $ref: "./components/schemas/market/SectorPerformanceHistory.yaml"
+    SectorPerformanceHistoryResponse:
+      $ref: "./components/schemas/market/SectorPerformanceHistoryResponse.yaml"
+    SectorForeignTrading:
+      $ref: "./components/schemas/market/SectorForeignTrading.yaml"
+    SectorForeignTradingResponse:
+      $ref: "./components/schemas/market/SectorForeignTradingResponse.yaml"
+    SectorForeignTradingHistory:
+      $ref: "./components/schemas/market/SectorForeignTradingHistory.yaml"
+    SectorForeignTradingHistoryResponse:
+      $ref: "./components/schemas/market/SectorForeignTradingHistoryResponse.yaml"
   responses:
     BadRequest:
       $ref: "./components/responses/BadRequest.yaml"

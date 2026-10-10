@@ -7,7 +7,7 @@ get:
   description: |
     Lịch các sự kiện thị trường theo ngày, **không gắn với mã cổ phiếu**. Hiện trả về sự kiện công bố số liệu vĩ mô (FOMC / quyết định lãi suất, CPI, GDP, PMI, …) của 6 nền kinh tế — Trung Quốc, Khu vực đồng Euro, Nhật Bản, Mỹ, Anh, Việt Nam.
 
-    Mỗi sự kiện có `type` phân loại (hiện chỉ `ECONOMIC`) và phần đặc thù nằm trong `detail`. Với sự kiện vĩ mô, `detail` gồm số liệu `actual` (thực tế), `previous` (kỳ trước), `consensus` (đồng thuận thị trường) và `forecast` (dự báo) — các trường này là `null` khi sự kiện chưa diễn ra hoặc nguồn chưa có số.
+    Mỗi sự kiện có `type` phân loại (hiện chỉ `ECONOMIC`) và phần đặc thù nằm trong `detail`. Với sự kiện vĩ mô, `detail` gồm số liệu `actual` (thực tế), `previous` (kỳ trước), `consensus` (đồng thuận thị trường) và `forecast` (dự báo) — dạng chuỗi số đã bỏ ký hiệu đơn vị, `null` khi sự kiện chưa diễn ra hoặc nguồn chưa có số — kèm `unit` là đơn vị chung của 4 số liệu (ví dụ `Percent`, `Thousand`, `USD Billion`).
 
     Khoảng thời gian lọc qua `from`/`to` (Unix timestamp tính bằng GIÂY). Bỏ trống cả hai thì mặc định lấy sự kiện từ hôm nay trở đi. Sort theo `detail.date` tăng dần, phân trang qua `page`/`page_size`.
   parameters:
@@ -69,9 +69,10 @@ get:
                     date: "2026-07-29T01:00:00+07:00"
                     category: Interest Rate
                     actual: null
-                    previous: 5.25%
-                    consensus: 5.50%
-                    forecast: 5.50%
+                    previous: "5.25"
+                    consensus: "5.50"
+                    forecast: "5.50"
+                    unit: Percent
                 - type: ECONOMIC
                   country: Vietnam
                   title: CPI MoM
@@ -79,9 +80,10 @@ get:
                     date: "2026-07-29T00:00:00+07:00"
                     category: Inflation
                     actual: null
-                    previous: 0.2%
-                    consensus: 0.3%
-                    forecast: 0.3%
+                    previous: "0.2"
+                    consensus: "0.3"
+                    forecast: "0.3"
+                    unit: Percent
               total: 137
               current_page: 1
               next_page: 2

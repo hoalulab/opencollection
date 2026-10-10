@@ -1,0 +1,11 @@
+type: string
+description: 'Chiều giao dịch đã chuẩn hoá từ nhãn tiếng Việt của nguồn. Hậu tố cho biết hướng ghi nhận sở hữu: `_BUY`/`_IN` là ghi tăng, `_SELL`/`_OUT` là ghi giảm. `TRADE_BUY` mua, `TRADE_SELL` bán, `TRANSFER_IN` nhận chuyển quyền sở hữu, `TRANSFER_OUT` chuyển quyền sở hữu, `GIFT_IN` nhận cho/biếu/tặng, `GIFT_OUT` cho/biếu/tặng, `INHERITANCE_IN` nhận thừa kế.'
+enum:
+  - TRADE_BUY
+  - TRADE_SELL
+  - TRANSFER_IN
+  - TRANSFER_OUT
+  - GIFT_IN
+  - GIFT_OUT
+  - INHERITANCE_IN
+example: TRADE_BUY

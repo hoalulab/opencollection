@@ -1,0 +1,75 @@
+type: object
+description: Chỉ số của một ngành trong phiên hiện tại.
+required:
+  - sector
+  - name
+properties:
+  sector:
+    type: string
+    description: Slug ngành.
+    example: financials
+  name:
+    type: string
+    description: Tên ngành.
+    example: Tài chính
+  index_value:
+    type:
+      - number
+      - 'null'
+    description: Điểm chỉ số hiện tại.
+    example: 1284.32
+  open:
+    type:
+      - number
+      - 'null'
+    description: Điểm mở cửa.
+    example: 1275.1
+  high:
+    type:
+      - number
+      - 'null'
+    description: Điểm cao nhất trong phiên.
+    example: 1289.44
+  low:
+    type:
+      - number
+      - 'null'
+    description: Điểm thấp nhất trong phiên.
+    example: 1272.85
+  reference:
+    type:
+      - number
+      - 'null'
+    description: Điểm tham chiếu (đóng cửa phiên trước).
+    example: 1273.15
+  change:
+    type:
+      - number
+      - 'null'
+    description: Thay đổi tuyệt đối so với tham chiếu (điểm).
+    example: 11.17
+  change_percent:
+    type:
+      - number
+      - 'null'
+    description: Thay đổi so với tham chiếu (%).
+    example: 0.88
+  volume:
+    type:
+      - number
+      - 'null'
+    description: Khối lượng khớp toàn ngành trong phiên.
+    example: 128450000
+  trading_value:
+    type:
+      - number
+      - 'null'
+    description: Giá trị khớp toàn ngành trong phiên (VND).
+    example: 3870000000000
+  updated_at:
+    type:
+      - string
+      - 'null'
+    format: date-time
+    description: Thời điểm dữ liệu được làm mới lần cuối (ISO 8601 kèm offset), không phải lúc gọi API. `null` khi nguồn không ghi thời điểm.
+    example: '2026-08-17T14:30:15+07:00'

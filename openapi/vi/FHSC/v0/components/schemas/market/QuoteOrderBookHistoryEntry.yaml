@@ -1,0 +1,34 @@
+type: object
+description: Một bản chụp sổ lệnh.
+required:
+  - taken_at
+  - bids
+  - asks
+properties:
+  taken_at:
+    type: string
+    format: date-time
+    description: Thời điểm chụp (ISO 8601 kèm offset).
+    example: '2026-09-17T10:05:00+07:00'
+  remain_bid:
+    type:
+      - number
+      - 'null'
+    description: Tổng khối lượng dư mua tại thời điểm chụp; `null` khi nguồn không cung cấp.
+    example: 125000
+  remain_ask:
+    type:
+      - number
+      - 'null'
+    description: Tổng khối lượng dư bán tại thời điểm chụp; `null` khi nguồn không cung cấp.
+    example: 98000
+  bids:
+    type: array
+    description: Các mức giá chờ mua, tốt nhất trước. Mã HNX/UPCOM có tới 10 mức, các sàn khác tối đa 3 mức.
+    items:
+      $ref: QuoteOrderBookLevel.yaml
+  asks:
+    type: array
+    description: Các mức giá chờ bán, tốt nhất trước. Mã HNX/UPCOM có tới 10 mức, các sàn khác tối đa 3 mức.
+    items:
+      $ref: QuoteOrderBookLevel.yaml

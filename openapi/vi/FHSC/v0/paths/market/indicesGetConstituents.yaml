@@ -1,0 +1,66 @@
+get:
+  operationId: indicesGetConstituents
+  tags:
+    - market-data
+  summary: Rổ cấu phần chỉ số
+  description: |
+    Các mã trong rổ một chỉ số kèm tỷ trọng theo vốn hoá, vốn hoá, giá khớp gần nhất và thay đổi %.
+
+    VN30 / HNX30 trả đúng rổ chọn lọc; VNINDEX / HNXINDEX / UPCOMINDEX là chỉ số toàn thị trường nên trả mọi mã niêm yết trên sàn tương ứng — hai con số `total` không so sánh trực tiếp được với nhau.
+  parameters:
+    - name: symbol
+      in: path
+      required: true
+      description: Mã chỉ số. Chỉ các chỉ số có membership tra được mới dùng được ở nhóm endpoint này; chỉ số quốc tế không được hỗ trợ.
+      schema:
+        type: string
+        enum: [VNINDEX, HNXINDEX, UPCOMINDEX, VN30, HNX30]
+        example: VNINDEX
+    - name: sort
+      in: query
+      required: false
+      description: 'Field sắp xếp, thêm `-` ở đầu để giảm dần. Mặc định `-weight_percent`. Field hợp lệ: weight_percent, market_cap, change_percent, symbol.'
+      schema:
+        type: string
+        enum: [weight_percent, '-weight_percent', market_cap, '-market_cap', change_percent, '-change_percent', symbol, '-symbol']
+        example: '-weight_percent'
+    - name: page
+      in: query
+      required: false
+      description: Trang cần lấy, bắt đầu từ 1.
+      schema:
+        type: integer
+        minimum: 1
+        example: 1
+    - name: page_size
+      in: query
+      required: false
+      description: Số mã mỗi trang, tối đa 50.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 50
+        example: 20
+  responses:
+    '200':
+      description: '`data.items` là danh sách mã trong rổ.'
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/market/IndexConstituentsResponse.yaml
+    '400':
+      $ref: ../../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../../components/responses/Unauthorized.yaml
+    '404':
+      $ref: ../../components/responses/NotFound.yaml
+    '429':
+      $ref: ../../components/responses/RateLimited.yaml
+    '500':
+      $ref: ../../components/responses/InternalError.yaml
+  x-codeSamples:
+    - lang: bash
+      label: cURL
+      source: |
+        curl -H "X-FH-APIKEY: $FINHAY_API_KEY" \
+          "https://open-api.fhsc.com.vn/market/indices/VN30/constituents"

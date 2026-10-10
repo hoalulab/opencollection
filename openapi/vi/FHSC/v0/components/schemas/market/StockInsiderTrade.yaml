@@ -1,0 +1,76 @@
+type: object
+description: Một giao dịch công bố của người nội bộ, cổ đông lớn hoặc người có liên quan.
+properties:
+  person_name:
+    type:
+      - string
+      - 'null'
+    description: Tên cá nhân hoặc tổ chức thực hiện giao dịch.
+    example: Nguyễn Văn A
+  position:
+    type:
+      - string
+      - 'null'
+    description: Chức vụ / mối quan hệ với doanh nghiệp.
+    example: Thành viên HĐQT
+  side:
+    anyOf:
+      - $ref: InsiderTradeSide.yaml
+      - type: 'null'
+    description: Chiều giao dịch. `null` khi nhãn của nguồn không nằm trong tập đã biết.
+  registered_volume:
+    type:
+      - number
+      - 'null'
+    description: Khối lượng đăng ký giao dịch (độ lớn, luôn không âm — chiều nằm ở `side`).
+    example: 500000
+  executed_volume:
+    type:
+      - number
+      - 'null'
+    description: Khối lượng đã thực hiện (độ lớn). `null` khi mới đăng ký.
+    example: 320000
+  ownership_after_percent:
+    type:
+      - number
+      - 'null'
+    description: Tỷ lệ sở hữu sau giao dịch (%).
+    example: 2.15
+  shares_before:
+    type:
+      - number
+      - 'null'
+    description: Số cổ phiếu nắm giữ trước giao dịch.
+    example: 1200000
+  shares_after:
+    type:
+      - number
+      - 'null'
+    description: Số cổ phiếu nắm giữ sau giao dịch.
+    example: 1520000
+  registered_from:
+    type:
+      - string
+      - 'null'
+    format: date
+    description: Ngày bắt đầu khoảng đăng ký giao dịch.
+    example: '2026-03-02'
+  registered_to:
+    type:
+      - string
+      - 'null'
+    format: date
+    description: Ngày kết thúc khoảng đăng ký giao dịch.
+    example: '2026-03-28'
+  executed_date:
+    type:
+      - string
+      - 'null'
+    format: date
+    description: Ngày công bố kết quả thực hiện. `null` khi chưa có kết quả.
+    example: '2026-03-25'
+  status:
+    anyOf:
+      - $ref: InsiderTradeStatus.yaml
+      - type: 'null'
+    description: Trạng thái giao dịch.

@@ -1,0 +1,38 @@
+type: object
+description: Danh sách mã thuộc một ngành, đã phân trang.
+required:
+  - sector
+  - items
+properties:
+  sector:
+    type: string
+    description: Slug ngành.
+    example: financials
+  name:
+    type: string
+    description: Tên ngành.
+    example: Tài chính
+  page:
+    type: integer
+    description: Trang hiện tại.
+    example: 1
+  page_size:
+    type: integer
+    description: Số mã mỗi trang.
+    example: 20
+  total:
+    type: integer
+    description: Tổng số mã trong ngành.
+    example: 87
+  updated_at:
+    type:
+      - string
+      - 'null'
+    format: date-time
+    description: Thời điểm dữ liệu được làm mới lần cuối (ISO 8601 kèm offset), không phải lúc gọi API. `null` khi nguồn không ghi thời điểm.
+    example: '2026-08-17T14:30:15+07:00'
+  items:
+    type: array
+    description: Danh sách mã.
+    items:
+      $ref: "SectorConstituentItem.yaml"

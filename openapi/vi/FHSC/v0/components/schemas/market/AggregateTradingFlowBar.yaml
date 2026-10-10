@@ -1,0 +1,25 @@
+type: object
+description: Một phiên trong chuỗi dòng tiền cộng dồn của một ngành hoặc một chỉ số.
+required:
+  - date
+  - buy
+  - sell
+  - net
+properties:
+  date:
+    type: string
+    format: date
+    description: Ngày của phiên (`YYYY-MM-DD`).
+    example: '2026-08-14'
+  buy:
+    allOf:
+      - $ref: TradingMethodBreakdown.yaml
+    description: Chiều mua, cộng dồn toàn bộ constituents.
+  sell:
+    allOf:
+      - $ref: TradingMethodBreakdown.yaml
+    description: Chiều bán, cộng dồn toàn bộ constituents.
+  net:
+    allOf:
+      - $ref: TradingMethodBreakdown.yaml
+    description: Ròng = mua − bán. Âm nghĩa là bán ròng.

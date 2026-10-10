@@ -1,0 +1,49 @@
+type: object
+description: Một báo cáo phân tích của công ty chứng khoán.
+properties:
+  id:
+    type: string
+    description: Mã định danh ổn định của báo cáo — cùng một báo cáo luôn cho cùng một id.
+    example: rp_9f2c1ab34de5f607
+  title:
+    type:
+      - string
+      - 'null'
+    description: Tiêu đề báo cáo.
+    example: VNM — Cập nhật KQKD Q1/2026
+  source:
+    type:
+      - string
+      - 'null'
+    description: Công ty chứng khoán phát hành.
+    example: SSI Research
+  published_date:
+    type:
+      - string
+      - 'null'
+    format: date
+    description: Ngày phát hành.
+    example: '2026-04-18'
+  recommendation:
+    anyOf:
+      - $ref: AnalystRecommendation.yaml
+      - type: 'null'
+    description: Khuyến nghị của báo cáo.
+  target_price:
+    type:
+      - number
+      - 'null'
+    description: Giá mục tiêu (VND/CP).
+    example: 85000
+  report_type:
+    type:
+      - string
+      - 'null'
+    description: Loại báo cáo theo phân loại của nguồn.
+    example: Báo cáo phân tích doanh nghiệp
+  file_url:
+    type:
+      - string
+      - 'null'
+    description: Link tải bản gốc (PDF). `null` khi nguồn không công bố file.
+    example: https://example.com/reports/vnm-q1-2026.pdf

@@ -1,0 +1,18 @@
+type: object
+description: Lịch sử sổ lệnh trong phiên hôm nay.
+required:
+  - symbol
+  - entries
+properties:
+  symbol:
+    type: string
+    description: Mã định danh (canonical, viết hoa).
+    example: VNM
+  currency:
+    type: string
+    description: Đơn vị tiền tệ.
+    example: VND
+  entries:
+    type: array
+    items:
+      $ref: QuoteOrderBookHistoryEntry.yaml

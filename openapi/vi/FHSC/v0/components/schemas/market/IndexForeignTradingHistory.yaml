@@ -1,0 +1,15 @@
+type: object
+description: Chuỗi dòng tiền khối ngoại theo phiên của một chỉ số. Phiên không có giao dịch bị bỏ qua; chưa phân trang.
+required:
+  - index
+  - data
+properties:
+  index:
+    type: string
+    description: Mã chỉ số.
+    example: VNINDEX
+  data:
+    type: array
+    description: Chuỗi bar theo phiên.
+    items:
+      $ref: AggregateTradingFlowBar.yaml

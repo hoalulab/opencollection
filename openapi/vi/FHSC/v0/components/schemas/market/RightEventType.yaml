@@ -1,0 +1,30 @@
+type: string
+description: 'Mã loại quyền, danh mục đầy đủ 26 giá trị. Chỉ 11 giá trị sau có schema `details` riêng (xem `RightEventDetails`) vì liên quan trực tiếp quyền lợi cổ đông/trái chủ — các giá trị còn lại là sự kiện quản trị/thị trường, `details` sẽ là `null`: `SHAREHOLDER_MEETING` = Tham dự đại hội cổ đông; `CASH_DIVIDEND` = Chia cổ tức bằng tiền; `STOCK_DIVIDEND` = Chia cổ tức bằng cổ phiếu; `RIGHTS_OFFERING` = Quyền mua; `BOND_INTEREST` = Trả lãi trái phiếu; `BOND_PRINCIPAL_INTEREST` = Trả gốc và lãi trái phiếu; `BOND_TO_STOCK_CONVERSION` = Chuyển đổi trái phiếu thành cổ phiếu; `STOCK_TO_STOCK_CONVERSION` = Chuyển đổi cổ phiếu thành cổ phiếu; `BONUS_SHARE` = Cổ phiếu thưởng; `CONVERTIBLE_BOND_OPTION` = Chuyển đổi trái phiếu (chọn nhận CP hoặc tiền); `COVERED_WARRANT_SETTLEMENT` = Chi trả lợi tức chứng quyền. Các giá trị không có details: `AUCTION` = Đấu giá; `TRADING_SUSPENSION` = Tạm ngừng giao dịch; `DELISTING` = Hủy niêm yết; `BUYBACK` = Mua lại; `SHAREHOLDER_OPINION_POLL` = Lấy ý kiến cổ đông; `TREASURY_SHARE_SALE` = Bán cổ phiếu quỹ; `INFO_UPDATE` = Cập nhật thông tin; `OTHER_STOCK_DIVIDEND` = Trả cổ tức bằng cổ phiếu khác; `STOCK_SPLIT` = Tách cổ phiếu; `STOCK_MERGE` = Gộp cổ phiếu; `RIGHT_TO_STOCK_CONVERSION` = Chuyển quyền thành cổ phiếu; `EXCHANGE_TRANSFER` = Chuyển sàn; `VOTING_RIGHT` = Quyền bỏ phiếu; `PENDING_SHARE_TO_TRADING` = Chuyển cổ phiếu chờ giao dịch thành giao dịch; `OTC_BOND_INTEREST` = Trả lãi trái phiếu OTC.'
+enum:
+  - AUCTION
+  - TRADING_SUSPENSION
+  - DELISTING
+  - BUYBACK
+  - SHAREHOLDER_MEETING
+  - SHAREHOLDER_OPINION_POLL
+  - TREASURY_SHARE_SALE
+  - INFO_UPDATE
+  - OTHER_STOCK_DIVIDEND
+  - CASH_DIVIDEND
+  - STOCK_DIVIDEND
+  - STOCK_SPLIT
+  - STOCK_MERGE
+  - RIGHTS_OFFERING
+  - BOND_INTEREST
+  - BOND_PRINCIPAL_INTEREST
+  - BOND_TO_STOCK_CONVERSION
+  - RIGHT_TO_STOCK_CONVERSION
+  - EXCHANGE_TRANSFER
+  - STOCK_TO_STOCK_CONVERSION
+  - BONUS_SHARE
+  - VOTING_RIGHT
+  - CONVERTIBLE_BOND_OPTION
+  - PENDING_SHARE_TO_TRADING
+  - OTC_BOND_INTEREST
+  - COVERED_WARRANT_SETTLEMENT
+example: CASH_DIVIDEND

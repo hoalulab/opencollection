@@ -1,0 +1,75 @@
+type: object
+description: Một dòng của bảng ngành. Chỉ chứa các field được chọn qua `fields` (mặc định `sector`, `name`, `index_value`, `change_percent`), cộng thêm field dùng trong `sort`/filter.
+properties:
+  sector:
+    type: string
+    description: Slug ngành.
+    example: financials
+  name:
+    type: string
+    description: Tên ngành.
+    example: Tài chính
+  level:
+    type: integer
+    description: 'Cấp trong cây ICB: 1 = ngành, 3 = nhóm ngành.'
+    example: 1
+  index_value:
+    type:
+      - number
+      - 'null'
+    description: Điểm chỉ số ngành.
+    example: 1284.32
+  change_percent:
+    type:
+      - number
+      - 'null'
+    description: Thay đổi so với tham chiếu (%), theo `window`.
+    example: 0.87
+  market_cap:
+    type:
+      - number
+      - 'null'
+    description: Vốn hoá toàn ngành (VND).
+    example: 1430000000000000
+  constituent_count:
+    type:
+      - number
+      - 'null'
+    description: Số mã thuộc ngành.
+    example: 87
+  advancers:
+    type:
+      - number
+      - 'null'
+    description: Số mã tăng giá. `null` khi `window` khác `1D`.
+    example: 42
+  decliners:
+    type:
+      - number
+      - 'null'
+    description: Số mã giảm giá. `null` khi `window` khác `1D`.
+    example: 31
+  unchanged:
+    type:
+      - number
+      - 'null'
+    description: Số mã đứng giá. `null` khi `window` khác `1D`.
+    example: 14
+  volume:
+    type:
+      - number
+      - 'null'
+    description: Khối lượng khớp trong `window`.
+    example: 128450000
+  trading_value:
+    type:
+      - number
+      - 'null'
+    description: Giá trị khớp trong `window` (VND).
+    example: 3870000000000
+  foreign_net_value:
+    type:
+      - number
+      - 'null'
+    description: Giá trị mua ròng của khối ngoại trong `window` (VND). Âm là bán ròng.
+    example: -184000000000

@@ -1,0 +1,23 @@
+type: object
+description: Details của Chuyển đổi trái phiếu sang cổ phiếu.
+properties:
+  conversion_ratio:
+    anyOf:
+      - $ref: Ratio.yaml
+      - type: 'null'
+    description: Trái phiếu → cổ phiếu.
+  from_symbol:
+    type:
+      - string
+      - 'null'
+    description: Mã trái phiếu nguồn.
+  to_symbol:
+    type:
+      - string
+      - 'null'
+    description: Mã giao dịch cổ phiếu đích.
+  bond_par_value:
+    type:
+      - number
+      - 'null'
+    description: Mệnh giá trái phiếu.

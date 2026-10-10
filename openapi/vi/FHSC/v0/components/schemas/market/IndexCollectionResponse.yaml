@@ -1,0 +1,8 @@
+allOf:
+  - $ref: ../common/EnvelopeBase.yaml
+  - type: object
+    required:
+      - data
+    properties:
+      data:
+        $ref: IndexCollection.yaml

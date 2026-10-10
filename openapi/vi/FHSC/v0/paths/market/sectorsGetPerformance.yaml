@@ -1,0 +1,52 @@
+get:
+  operationId: sectorsGetPerformance
+  tags:
+    - market-data
+  summary: Chỉ số ngành (phiên hiện tại)
+  description: |
+    Điểm chỉ số của một ngành trong phiên hiện tại kèm mở / cao / thấp, tham chiếu, thay đổi tuyệt đối và %, khối lượng và giá trị khớp toàn ngành.
+
+    Cùng shape với một quote cổ phiếu, nhưng `index_value` tính bằng ĐIỂM chứ không phải VND.
+  parameters:
+    - name: slug
+      in: path
+      required: true
+      description: Slug ngành cấp 1. Tra danh sách hợp lệ qua `GET /market/sectors`.
+      schema:
+        type: string
+        enum:
+          - technology
+          - telecommunications
+          - healthcare
+          - financials
+          - real-estate
+          - consumer-discretionary
+          - consumer-staples
+          - industrials
+          - basic-materials
+          - energy
+          - utilities
+        example: financials
+  responses:
+    "200":
+      description: "`data` là chỉ số ngành của phiên hiện tại."
+      content:
+        application/json:
+          schema:
+            $ref: "../../components/schemas/market/SectorPerformanceResponse.yaml"
+    "400":
+      $ref: "../../components/responses/BadRequest.yaml"
+    "401":
+      $ref: "../../components/responses/Unauthorized.yaml"
+    "404":
+      $ref: "../../components/responses/NotFound.yaml"
+    "429":
+      $ref: "../../components/responses/RateLimited.yaml"
+    "500":
+      $ref: "../../components/responses/InternalError.yaml"
+  x-codeSamples:
+    - lang: bash
+      label: cURL
+      source: |
+        curl -H "X-FH-APIKEY: $FINHAY_API_KEY" \
+          "https://open-api.fhsc.com.vn/market/sectors/financials/performance"

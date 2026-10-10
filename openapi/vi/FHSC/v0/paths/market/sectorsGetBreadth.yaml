@@ -1,0 +1,52 @@
+get:
+  operationId: sectorsGetBreadth
+  tags:
+    - market-data
+  summary: Độ rộng ngành (phiên hiện tại)
+  description: |
+    Số mã tăng / giảm / đứng giá và số mã trần / sàn trong một ngành ở phiên hiện tại.
+
+    `limit_up` là tập con của `advancers`, `limit_down` là tập con của `decliners`; mã không giao dịch không rơi vào nhóm nào, nên ba nhóm không cộng lại bằng `total`.
+  parameters:
+    - name: slug
+      in: path
+      required: true
+      description: Slug ngành cấp 1. Tra danh sách hợp lệ qua `GET /market/sectors`.
+      schema:
+        type: string
+        enum:
+          - technology
+          - telecommunications
+          - healthcare
+          - financials
+          - real-estate
+          - consumer-discretionary
+          - consumer-staples
+          - industrials
+          - basic-materials
+          - energy
+          - utilities
+        example: financials
+  responses:
+    "200":
+      description: "`data` là độ rộng của ngành trong phiên hiện tại."
+      content:
+        application/json:
+          schema:
+            $ref: "../../components/schemas/market/SectorBreadthResponse.yaml"
+    "400":
+      $ref: "../../components/responses/BadRequest.yaml"
+    "401":
+      $ref: "../../components/responses/Unauthorized.yaml"
+    "404":
+      $ref: "../../components/responses/NotFound.yaml"
+    "429":
+      $ref: "../../components/responses/RateLimited.yaml"
+    "500":
+      $ref: "../../components/responses/InternalError.yaml"
+  x-codeSamples:
+    - lang: bash
+      label: cURL
+      source: |
+        curl -H "X-FH-APIKEY: $FINHAY_API_KEY" \
+          "https://open-api.fhsc.com.vn/market/sectors/financials/breadth"

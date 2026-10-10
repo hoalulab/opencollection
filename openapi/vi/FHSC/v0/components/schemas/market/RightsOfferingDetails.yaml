@@ -1,0 +1,35 @@
+type: object
+description: Details của Quyền mua.
+properties:
+  ownership_to_right_ratio:
+    anyOf:
+      - $ref: Ratio.yaml
+      - type: 'null'
+    description: Sở hữu → quyền.
+  right_to_share_ratio:
+    anyOf:
+      - $ref: Ratio.yaml
+      - type: 'null'
+    description: Quyền → cổ phiếu được mua.
+  subscription_price:
+    type:
+      - number
+      - 'null'
+    description: Giá mua.
+  to_symbol:
+    type:
+      - string
+      - 'null'
+    description: Mã chứng khoán được mua.
+  begin_date:
+    type:
+      - string
+      - 'null'
+    format: date
+    description: Ngày bắt đầu đăng ký quyền mua.
+  due_date:
+    type:
+      - string
+      - 'null'
+    format: date
+    description: Ngày cuối cùng đăng ký quyền mua (server tự tính = hạn gốc lùi 8 ngày làm việc).

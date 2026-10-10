@@ -1,0 +1,87 @@
+get:
+  operationId: stocksGetAnalystReports
+  tags:
+    - news-events
+  summary: Báo cáo phân tích của stock
+  description: |
+    Báo cáo phân tích / khuyến nghị của các công ty chứng khoán cho 1 mã: tiêu đề, nguồn phát hành, khuyến nghị, giá mục tiêu, ngày phát hành và link tải bản gốc.
+
+    Lọc theo `source` (công ty chứng khoán), `recommendation`, và khoảng ngày phát hành `from`/`to` (`YYYY-MM-DD`, bỏ trống → 1 năm gần nhất). Phân trang qua `page`/`page_size` (tối đa 50).
+  parameters:
+    - name: symbol
+      in: path
+      required: true
+      description: 'Mã cổ phiếu niêm yết (3–10 ký tự chữ/số, không phân biệt hoa thường). VD: VNM, FPT.'
+      schema:
+        type: string
+        example: VNM
+    - name: from
+      in: query
+      required: false
+      description: Ngày phát hành bắt đầu (bao gồm), dạng `YYYY-MM-DD`. Bỏ trống → `to` trừ 1 năm.
+      schema:
+        type: string
+        format: date
+        example: '2026-01-01'
+    - name: to
+      in: query
+      required: false
+      description: Ngày phát hành kết thúc (bao gồm), dạng `YYYY-MM-DD`. Bỏ trống → hôm nay.
+      schema:
+        type: string
+        format: date
+        example: '2026-03-31'
+    - name: source
+      in: query
+      required: false
+      description: Lọc theo công ty chứng khoán phát hành. Bỏ trống → mọi nguồn.
+      schema:
+        type: string
+        maxLength: 255
+        example: SSI Research
+    - name: recommendation
+      in: query
+      required: false
+      description: Lọc theo khuyến nghị. Bỏ trống → mọi khuyến nghị.
+      schema:
+        $ref: "../../components/schemas/market/AnalystRecommendation.yaml"
+    - name: page
+      in: query
+      required: false
+      description: Trang cần lấy, bắt đầu từ 1. Mặc định `1`.
+      schema:
+        type: integer
+        minimum: 1
+        example: 1
+    - name: page_size
+      in: query
+      required: false
+      description: Số bản ghi mỗi trang, tối đa 50. Mặc định `20`.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 50
+        example: 20
+  responses:
+    '200':
+      description: '`data.data` là danh sách báo cáo phân tích của trang hiện tại.'
+      content:
+        application/json:
+          schema:
+            $ref: "../../components/schemas/market/StockAnalystReportListResponse.yaml"
+    '400':
+      $ref: "../../components/responses/BadRequest.yaml"
+    '401':
+      $ref: "../../components/responses/Unauthorized.yaml"
+    '404':
+      $ref: "../../components/responses/NotFound.yaml"
+    '429':
+      $ref: "../../components/responses/RateLimited.yaml"
+    '500':
+      $ref: "../../components/responses/InternalError.yaml"
+  x-codeSamples:
+    - lang: bash
+      label: cURL
+      source: |
+        curl -H "X-FH-APIKEY: $FINHAY_API_KEY" \
+          "https://open-api.fhsc.com.vn/market/stocks/VNM/analyst-reports?recommendation=BUY"

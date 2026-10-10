@@ -1,0 +1,77 @@
+get:
+  operationId: stocksGetEvents
+  tags:
+    - news-events
+  summary: Sự kiện quyền của stock
+  description: Sự kiện quyền của 1 mã (nguồn CAMAST của VSD), gồm cả sự kiện tương lai đã công bố. Sắp xếp theo ngày GDKHQ giảm dần, sự kiện chưa có ngày chốt xếp cuối.
+  parameters:
+    - name: symbol
+      in: path
+      required: true
+      description: 'Mã cổ phiếu niêm yết (3–10 ký tự chữ/số, không phân biệt hoa thường). VD: VNM, FPT.'
+      schema:
+        type: string
+        example: VNM
+    - name: from
+      in: query
+      required: false
+      description: Ngày bắt đầu (bao gồm), lọc theo `dates.ex_date`, dạng `YYYY-MM-DD`. Bỏ trống → không giới hạn.
+      schema:
+        type: string
+        format: date
+        example: '2026-01-01'
+    - name: to
+      in: query
+      required: false
+      description: Ngày kết thúc (bao gồm), lọc theo `dates.ex_date`, dạng `YYYY-MM-DD`. Bỏ trống → không giới hạn.
+      schema:
+        type: string
+        format: date
+        example: '2026-12-31'
+    - name: event_type
+      in: query
+      required: false
+      description: Lọc theo loại quyền (`RightEventType`, vd `CASH_DIVIDEND`), danh mục đầy đủ 26 giá trị. Bỏ trống → mọi loại.
+      schema:
+        $ref: "../../components/schemas/market/RightEventType.yaml"
+        example: CASH_DIVIDEND
+    - name: page
+      in: query
+      required: false
+      description: Trang cần lấy, bắt đầu từ 1. Mặc định `1`.
+      schema:
+        type: integer
+        minimum: 1
+        example: 1
+    - name: page_size
+      in: query
+      required: false
+      description: Số bản ghi mỗi trang, tối đa 50. Mặc định `20`.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 50
+        example: 20
+  responses:
+    '200':
+      description: '`data.events` là danh sách sự kiện quyền của trang hiện tại.'
+      content:
+        application/json:
+          schema:
+            $ref: "../../components/schemas/market/RightEventListResponse.yaml"
+    '400':
+      $ref: "../../components/responses/BadRequest.yaml"
+    '401':
+      $ref: "../../components/responses/Unauthorized.yaml"
+    '404':
+      $ref: "../../components/responses/NotFound.yaml"
+    '429':
+      $ref: "../../components/responses/RateLimited.yaml"
+    '500':
+      $ref: "../../components/responses/InternalError.yaml"
+  x-codeSamples:
+    - lang: bash
+      label: cURL
+      source: |
+        curl -H "X-FH-APIKEY: $FINHAY_API_KEY" \
+          "https://open-api.fhsc.com.vn/market/stocks/VNM/events?event_type=CASH_DIVIDEND"

@@ -1,0 +1,8 @@
+type: object
+description: Details của Cổ tức bằng cổ phiếu.
+properties:
+  ratio:
+    anyOf:
+      - $ref: Ratio.yaml
+      - type: 'null'
+    description: Tỷ lệ chia cổ phiếu.

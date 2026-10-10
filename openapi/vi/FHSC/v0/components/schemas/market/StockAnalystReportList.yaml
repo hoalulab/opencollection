@@ -1,0 +1,34 @@
+type: object
+description: Danh sách báo cáo phân tích của một mã, đã phân trang.
+required:
+  - symbol
+  - data
+properties:
+  symbol:
+    type: string
+    description: Mã cổ phiếu.
+    example: VNM
+  total:
+    type: integer
+    description: Tổng số báo cáo khớp bộ lọc.
+    example: 37
+  page:
+    type: integer
+    description: Trang hiện tại.
+    example: 1
+  page_size:
+    type: integer
+    description: Số bản ghi mỗi trang.
+    example: 20
+  data:
+    type: array
+    description: Các bản ghi của trang hiện tại.
+    items:
+      $ref: StockAnalystReport.yaml
+  updated_at:
+    type:
+      - string
+      - 'null'
+    format: date-time
+    description: Lần nguồn cập nhật gần nhất trong số các bản ghi trả về (ISO 8601 kèm offset). `null` khi không bản ghi nào mang mốc thời gian.
+    example: '2026-05-27T14:30:15+07:00'

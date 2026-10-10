@@ -1,0 +1,50 @@
+type: object
+description: Một sự kiện quyền của mã, mô hình common + details. `details` khớp đúng schema theo `event_type` (xem `RightEventDetails`) và `null` khi loại quyền chưa có schema riêng.
+required:
+  - camast_id
+  - event_type
+  - symbol
+  - dates
+properties:
+  camast_id:
+    type: string
+    description: Mã sự kiện quyền (CAMASTID) — định danh chính.
+    example: '0001000134011191'
+  event_type:
+    $ref: RightEventType.yaml
+    example: CASH_DIVIDEND
+  event_type_name:
+    type:
+      - string
+      - 'null'
+    description: Tên loại quyền.
+    example: Cổ tức bằng tiền
+  symbol:
+    type: string
+    description: Mã giao dịch chứng khoán.
+    example: PGD
+  description:
+    type:
+      - string
+      - 'null'
+    description: Mô tả sự kiện.
+  dates:
+    type: object
+    description: Common chỉ giữ 2 mốc; các ngày còn lại (execution_date, begin_date, due_date...) nằm trong `details` theo từng loại quyền.
+    properties:
+      record_date:
+        type:
+          - string
+          - 'null'
+        format: date
+        description: Ngày đăng ký cuối cùng / ngày chốt danh sách.
+      ex_date:
+        type:
+          - string
+          - 'null'
+        format: date
+        description: Ngày giao dịch không hưởng quyền (GDKHQ) — server tự tính = record_date lùi 1 ngày giao dịch.
+  details:
+    anyOf:
+      - $ref: RightEventDetails.yaml
+      - type: 'null'

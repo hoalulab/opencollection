@@ -1,0 +1,32 @@
+type: object
+description: Danh sách mã trong rổ một chỉ số, đã phân trang.
+required:
+  - index
+  - items
+properties:
+  index:
+    type: string
+    description: Mã chỉ số.
+    example: VN30
+  page:
+    type: integer
+    description: Trang hiện tại.
+    example: 1
+  page_size:
+    type: integer
+    description: Số mã mỗi trang.
+    example: 20
+  total:
+    type: integer
+    description: Tổng số mã trong rổ.
+    example: 30
+  updated_at:
+    type: [string, 'null']
+    format: date-time
+    description: 'Thời điểm dữ liệu được làm mới lần cuối (ISO 8601 kèm offset), không phải lúc gọi API. `null` khi nguồn không ghi thời điểm.'
+    example: '2026-08-17T14:30:15+07:00'
+  items:
+    type: array
+    description: Danh sách mã.
+    items:
+      $ref: IndexConstituentItem.yaml

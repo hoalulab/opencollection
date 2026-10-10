@@ -1,0 +1,7 @@
+type: string
+description: 'Trạng thái suy ra từ loại tin và khối lượng: `REGISTERED` mới đăng ký chưa có kết quả, `COMPLETED` khớp đủ khối lượng đăng ký, `PARTIAL` khớp một phần.'
+enum:
+  - REGISTERED
+  - COMPLETED
+  - PARTIAL
+example: COMPLETED

@@ -1,0 +1,35 @@
+type: object
+description: Details của Chuyển đổi trái phiếu (chọn cổ phiếu hoặc tiền).
+properties:
+  conversion_ratio:
+    anyOf:
+      - $ref: Ratio.yaml
+      - type: 'null'
+    description: Trái phiếu → cổ phiếu.
+  right_to_share_ratio:
+    anyOf:
+      - $ref: Ratio.yaml
+      - type: 'null'
+    description: Quyền → cổ phiếu.
+  conversion_price:
+    type:
+      - number
+      - 'null'
+    description: Giá chuyển đổi / giá trị nhận tiền.
+  to_symbol:
+    type:
+      - string
+      - 'null'
+    description: Mã giao dịch cổ phiếu đích.
+  begin_date:
+    type:
+      - string
+      - 'null'
+    format: date
+    description: Ngày bắt đầu đăng ký.
+  due_date:
+    type:
+      - string
+      - 'null'
+    format: date
+    description: Ngày cuối cùng được đăng ký.

@@ -1,0 +1,28 @@
+type: object
+description: 'Details của Cổ tức bằng tiền. Có 2 case theo `rate_type`: `R` (theo %, dùng `dividend_rate`) hoặc `V` (theo giá trị đồng/CP, dùng `dividend_value`).'
+properties:
+  execution_date:
+    type:
+      - string
+      - 'null'
+    format: date
+    description: Ngày thực hiện chi trả.
+  rate_type:
+    type:
+      - string
+      - 'null'
+    enum:
+      - R
+      - V
+      - null
+    description: '`R` = theo tỷ lệ %, `V` = theo giá trị.'
+  dividend_rate:
+    type:
+      - number
+      - 'null'
+    description: Tỷ lệ %/mệnh giá — có giá trị khi `rate_type=R`.
+  dividend_value:
+    type:
+      - number
+      - 'null'
+    description: Đồng/cổ phiếu — có giá trị khi `rate_type=V`.

@@ -16,14 +16,6 @@ get:
       schema:
         type: string
         example: HPG
-    - name: date
-      in: query
-      required: false
-      description: Ngày phiên cần lấy, dạng `YYYY-MM-DD`; không được ở tương lai. Bỏ trống → phiên gần nhất có dữ liệu.
-      schema:
-        type: string
-        format: date
-        example: "2026-05-27"
   responses:
     "200":
       description: "`data` là giao dịch tổng của phiên."

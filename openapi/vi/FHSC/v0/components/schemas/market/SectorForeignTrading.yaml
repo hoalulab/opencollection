@@ -1,0 +1,42 @@
+type: object
+description: Tổng giao dịch khối ngoại của cả một ngành trong một phiên.
+required:
+  - sector
+  - buy
+  - sell
+  - net
+properties:
+  sector:
+    type: string
+    description: Slug ngành.
+    example: financials
+  date:
+    type:
+      - string
+      - 'null'
+    format: date
+    description: Ngày của phiên (`YYYY-MM-DD`). `null` khi chưa có phiên nào có dữ liệu.
+    example: '2026-08-17'
+  buy:
+    allOf:
+      - $ref: "TradingMethodBreakdown.yaml"
+    description: Chiều mua, cộng dồn toàn bộ constituents.
+  sell:
+    allOf:
+      - $ref: "TradingMethodBreakdown.yaml"
+    description: Chiều bán, cộng dồn toàn bộ constituents.
+  net:
+    allOf:
+      - $ref: "TradingMethodBreakdown.yaml"
+    description: Ròng = mua − bán. Âm nghĩa là bán ròng.
+  constituent_count:
+    type: integer
+    description: Số mã trong ngành thực sự có giao dịch khối ngoại ở phiên này.
+    example: 63
+  updated_at:
+    type:
+      - string
+      - 'null'
+    format: date-time
+    description: Thời điểm dữ liệu được làm mới lần cuối (ISO 8601 kèm offset), không phải lúc gọi API. `null` khi nguồn không ghi thời điểm.
+    example: '2026-08-17T14:30:15+07:00'

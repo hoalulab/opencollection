@@ -1,0 +1,42 @@
+type: object
+description: Danh sách sự kiện quyền của một mã, đã phân trang.
+required:
+  - symbol
+  - pagination
+  - events
+properties:
+  symbol:
+    type: string
+    description: Mã cổ phiếu.
+    example: VNM
+  pagination:
+    type: object
+    properties:
+      page:
+        type: integer
+        description: Trang hiện tại.
+        example: 1
+      page_size:
+        type: integer
+        description: Số bản ghi mỗi trang.
+        example: 20
+      total_items:
+        type: integer
+        description: Tổng số sự kiện khớp bộ lọc.
+        example: 37
+      total_pages:
+        type: integer
+        description: Tổng số trang.
+        example: 2
+  events:
+    type: array
+    description: Các bản ghi của trang hiện tại.
+    items:
+      $ref: RightEvent.yaml
+  updated_at:
+    type:
+      - string
+      - 'null'
+    format: date-time
+    description: Lần nguồn cập nhật gần nhất trong số các bản ghi trả về (ISO 8601 kèm offset). `null` khi không bản ghi nào mang mốc thời gian.
+    example: '2026-05-27T14:30:15+07:00'

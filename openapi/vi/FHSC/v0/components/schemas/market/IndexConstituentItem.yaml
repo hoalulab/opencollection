@@ -1,0 +1,33 @@
+type: object
+description: Một mã trong rổ chỉ số.
+required:
+  - symbol
+properties:
+  symbol:
+    type: string
+    description: Mã cổ phiếu.
+    example: VCB
+  name:
+    type: [string, 'null']
+    description: Tên doanh nghiệp.
+    example: Ngân hàng TMCP Ngoại thương Việt Nam
+  exchange:
+    type: [string, 'null']
+    description: Sàn niêm yết.
+    example: HOSE
+  weight_percent:
+    type: [number, 'null']
+    description: Tỷ trọng của mã trong rổ, theo vốn hoá (%).
+    example: 12.41
+  market_cap:
+    type: [number, 'null']
+    description: Vốn hoá của mã (VND), tính từ quote hiện tại.
+    example: 512000000000000
+  price:
+    type: [number, 'null']
+    description: Giá khớp gần nhất (VND).
+    example: 92500
+  change_percent:
+    type: [number, 'null']
+    description: Thay đổi giá so với tham chiếu (%).
+    example: 1.09

@@ -1,0 +1,229 @@
+get:
+  operationId: sectorsList
+  tags:
+    - market-data
+  summary: Bảng so sánh các ngành
+  description: |
+    Danh mục ngành kèm bảng so sánh liên ngành: điểm chỉ số, thay đổi %, vốn hoá, độ rộng, khối lượng / giá trị khớp và mua ròng khối ngoại.
+
+    `window` quyết định cửa sổ luỹ kế của các field dòng tiền (`volume`, `trading_value`, `foreign_net_value`, `change_percent`). Độ rộng (`advancers`, `decliners`, `unchanged`) chỉ tính được cho phiên hiện tại, nên ngoài `window=1D` các field này trả `null`, và sort/filter theo chúng bị từ chối.
+
+    Cũng là nơi tra `slug` hợp lệ cho các endpoint `/market/sectors/{slug}/*`.
+  parameters:
+    - name: level
+      in: query
+      required: false
+      description: "Cấp trong cây ICB: `1` = ngành, `3` = nhóm ngành. Bỏ trống → mọi cấp."
+      schema:
+        type: integer
+        enum:
+          - 1
+          - 3
+        example: 1
+    - name: parent
+      in: query
+      required: false
+      description: Chỉ lấy nhóm ngành thuộc ngành cấp 1 này.
+      schema:
+        type: string
+        enum:
+          - technology
+          - telecommunications
+          - healthcare
+          - financials
+          - real-estate
+          - consumer-discretionary
+          - consumer-staples
+          - industrials
+          - basic-materials
+          - energy
+          - utilities
+        example: financials
+    - name: window
+      in: query
+      required: false
+      description: Cửa sổ luỹ kế cho các field dòng tiền.
+      schema:
+        type: string
+        enum:
+          - 1D
+          - 1W
+          - 1M
+          - 3M
+          - 6M
+          - 1Y
+          - YTD
+        default: 1D
+        example: YTD
+    - name: sort
+      in: query
+      required: false
+      description: "Field sắp xếp, thêm `-` ở đầu để giảm dần. Mặc định `-market_cap`. Field hợp lệ: index_value, change_percent, market_cap, constituent_count, advancers, decliners, unchanged, volume, trading_value, foreign_net_value."
+      schema:
+        type: string
+        example: "-foreign_net_value"
+    - name: fields
+      in: query
+      required: false
+      description: "Danh sách field cần trả, phân tách bằng dấu phẩy. Mặc định `sector,name,index_value,change_percent`; field dùng trong `sort`/filter luôn được thêm vào. Field hợp lệ: sector, name, level, index_value, change_percent, market_cap, constituent_count, advancers, decliners, unchanged, volume, trading_value, foreign_net_value."
+      schema:
+        type: string
+        example: sector,name,market_cap,foreign_net_value
+    - name: index_value_gt
+      in: query
+      required: false
+      description: Chỉ giữ dòng có `index_value` lớn hơn giá trị này.
+      schema:
+        type: number
+    - name: index_value_lt
+      in: query
+      required: false
+      description: Chỉ giữ dòng có `index_value` nhỏ hơn giá trị này.
+      schema:
+        type: number
+    - name: change_percent_gt
+      in: query
+      required: false
+      description: Chỉ giữ dòng có `change_percent` lớn hơn giá trị này.
+      schema:
+        type: number
+    - name: change_percent_lt
+      in: query
+      required: false
+      description: Chỉ giữ dòng có `change_percent` nhỏ hơn giá trị này.
+      schema:
+        type: number
+    - name: market_cap_gt
+      in: query
+      required: false
+      description: Chỉ giữ dòng có `market_cap` lớn hơn giá trị này.
+      schema:
+        type: number
+    - name: market_cap_lt
+      in: query
+      required: false
+      description: Chỉ giữ dòng có `market_cap` nhỏ hơn giá trị này.
+      schema:
+        type: number
+    - name: constituent_count_gt
+      in: query
+      required: false
+      description: Chỉ giữ dòng có `constituent_count` lớn hơn giá trị này.
+      schema:
+        type: number
+    - name: constituent_count_lt
+      in: query
+      required: false
+      description: Chỉ giữ dòng có `constituent_count` nhỏ hơn giá trị này.
+      schema:
+        type: number
+    - name: advancers_gt
+      in: query
+      required: false
+      description: Chỉ giữ dòng có `advancers` lớn hơn giá trị này.
+      schema:
+        type: number
+    - name: advancers_lt
+      in: query
+      required: false
+      description: Chỉ giữ dòng có `advancers` nhỏ hơn giá trị này.
+      schema:
+        type: number
+    - name: decliners_gt
+      in: query
+      required: false
+      description: Chỉ giữ dòng có `decliners` lớn hơn giá trị này.
+      schema:
+        type: number
+    - name: decliners_lt
+      in: query
+      required: false
+      description: Chỉ giữ dòng có `decliners` nhỏ hơn giá trị này.
+      schema:
+        type: number
+    - name: unchanged_gt
+      in: query
+      required: false
+      description: Chỉ giữ dòng có `unchanged` lớn hơn giá trị này.
+      schema:
+        type: number
+    - name: unchanged_lt
+      in: query
+      required: false
+      description: Chỉ giữ dòng có `unchanged` nhỏ hơn giá trị này.
+      schema:
+        type: number
+    - name: volume_gt
+      in: query
+      required: false
+      description: Chỉ giữ dòng có `volume` lớn hơn giá trị này.
+      schema:
+        type: number
+    - name: volume_lt
+      in: query
+      required: false
+      description: Chỉ giữ dòng có `volume` nhỏ hơn giá trị này.
+      schema:
+        type: number
+    - name: trading_value_gt
+      in: query
+      required: false
+      description: Chỉ giữ dòng có `trading_value` lớn hơn giá trị này.
+      schema:
+        type: number
+    - name: trading_value_lt
+      in: query
+      required: false
+      description: Chỉ giữ dòng có `trading_value` nhỏ hơn giá trị này.
+      schema:
+        type: number
+    - name: foreign_net_value_gt
+      in: query
+      required: false
+      description: Chỉ giữ dòng có `foreign_net_value` lớn hơn giá trị này.
+      schema:
+        type: number
+    - name: foreign_net_value_lt
+      in: query
+      required: false
+      description: Chỉ giữ dòng có `foreign_net_value` nhỏ hơn giá trị này.
+      schema:
+        type: number
+    - name: page
+      in: query
+      required: false
+      description: Trang cần lấy, bắt đầu từ 1.
+      schema:
+        type: integer
+        minimum: 1
+        example: 1
+    - name: page_size
+      in: query
+      required: false
+      description: Số ngành mỗi trang, tối đa 50.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 50
+        example: 20
+  responses:
+    "200":
+      description: "`data.items` là danh sách ngành, mỗi item chỉ chứa các field được chọn qua `fields`."
+      content:
+        application/json:
+          schema:
+            $ref: "../../components/schemas/market/SectorCollectionResponse.yaml"
+    "400":
+      $ref: "../../components/responses/BadRequest.yaml"
+    "401":
+      $ref: "../../components/responses/Unauthorized.yaml"
+    "429":
+      $ref: "../../components/responses/RateLimited.yaml"
+    "500":
+      $ref: "../../components/responses/InternalError.yaml"
+  x-codeSamples:
+    - lang: bash
+      label: cURL
+      source: |
+        curl -H "X-FH-APIKEY: $FINHAY_API_KEY" \
+          "https://open-api.fhsc.com.vn/market/sectors?window=YTD&sort=-foreign_net_value"

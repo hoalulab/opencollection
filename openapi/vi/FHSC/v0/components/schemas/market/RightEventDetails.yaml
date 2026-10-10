@@ -1,0 +1,13 @@
+description: Field riêng theo từng loại quyền — nhánh nào áp dụng do `event_type` ở cấp gốc quyết định (bản thân `details` không lặp lại field này). `null` khi loại quyền chưa có schema riêng.
+oneOf:
+  - $ref: ShareholderMeetingDetails.yaml
+  - $ref: CashDividendDetails.yaml
+  - $ref: StockDividendDetails.yaml
+  - $ref: RightsOfferingDetails.yaml
+  - $ref: BondInterestDetails.yaml
+  - $ref: BondPrincipalInterestDetails.yaml
+  - $ref: BondToStockConversionDetails.yaml
+  - $ref: StockToStockConversionDetails.yaml
+  - $ref: BonusShareDetails.yaml
+  - $ref: ConvertibleBondOptionDetails.yaml
+  - $ref: CoveredWarrantSettlementDetails.yaml

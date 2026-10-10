@@ -1,5 +1,8 @@
 type: object
-description: Phần đặc thù của sự kiện vĩ mô (`type = ECONOMIC`).
+description: |
+  Phần đặc thù của sự kiện vĩ mô (`type = ECONOMIC`). Các số liệu đã bỏ ký hiệu
+  đơn vị; `unit` cho biết đơn vị dùng chung cho `actual`, `previous`,
+  `consensus` và `forecast`.
 required:
   - date
   - category
@@ -17,23 +20,27 @@ properties:
     type:
       - string
       - "null"
-    description: Số liệu thực tế đã công bố. `null` khi sự kiện chưa diễn ra.
-    example: 5.50%
+    description: Số liệu thực tế đã công bố, không kèm ký hiệu đơn vị. `null` khi sự kiện chưa diễn ra hoặc nguồn chưa có số.
+    example: "5.50"
   previous:
     type:
       - string
       - "null"
-    description: Số liệu kỳ trước. `null` nếu nguồn không có.
-    example: 5.25%
+    description: Số liệu kỳ trước, không kèm ký hiệu đơn vị. `null` nếu nguồn không có.
+    example: "5.25"
   consensus:
     type:
       - string
       - "null"
-    description: Đồng thuận thị trường (consensus). `null` nếu nguồn không có.
-    example: 5.50%
+    description: Đồng thuận thị trường (consensus), không kèm ký hiệu đơn vị. `null` nếu nguồn không có.
+    example: "5.50"
   forecast:
     type:
       - string
       - "null"
-    description: Dự báo nhà phân tích. `null` nếu nguồn không có.
-    example: 5.50%
+    description: Dự báo nhà phân tích, không kèm ký hiệu đơn vị. `null` nếu nguồn không có.
+    example: "5.50"
+  unit:
+    type: string
+    description: Đơn vị chung của các số liệu, ví dụ `Percent`, `Thousand`, `USD Billion`.
+    example: Percent

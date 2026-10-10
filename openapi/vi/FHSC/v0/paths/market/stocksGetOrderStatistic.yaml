@@ -7,7 +7,7 @@ get:
   description: |
     Đây KHÔNG phải lệnh chờ trong sổ lệnh: là **lệnh đã khớp, phân loại theo bên chủ động** — mua chủ động (lifted the offer) và bán chủ động (hit the bid), bao gồm cả thoả thuận.
 
-    Nguồn chỉ có dữ liệu **sau khi đóng phiên**: trong giờ giao dịch, request không kèm `date` trả về phiên đã đóng gần nhất, không phải hôm nay.
+    Nguồn chỉ có dữ liệu **sau khi đóng phiên**: trong giờ giao dịch, endpoint trả về phiên đã đóng gần nhất, không phải hôm nay — hãy đọc `date` trong kết quả trước khi coi đó là số liệu hôm nay.
 
     `avg_volume_per_order` là `null` khi `order_count = 0`; `net_volume` có thể âm.
   parameters:
@@ -18,14 +18,6 @@ get:
       schema:
         type: string
         example: HPG
-    - name: date
-      in: query
-      required: false
-      description: Ngày phiên cần lấy, dạng `YYYY-MM-DD`; không được ở tương lai. Bỏ trống → phiên đã đóng gần nhất.
-      schema:
-        type: string
-        format: date
-        example: "2026-05-27"
   responses:
     "200":
       description: "`data` là thống kê lệnh chủ động của phiên."

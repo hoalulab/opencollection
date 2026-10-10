@@ -1,0 +1,52 @@
+get:
+  operationId: sectorsGetForeignTrading
+  tags:
+    - market-data
+  summary: Khối ngoại theo ngành (phiên gần nhất)
+  description: |
+    Tổng mua / bán / ròng của khối ngoại trên toàn bộ mã của một ngành trong phiên gần nhất có dữ liệu.
+
+    Trả lời "khối ngoại mua ròng BAO NHIÊU ở ngành này". Muốn biết MÃ NÀO thì dùng screener `GET /market/stocks` với `sector` + `sort=-foreign_net_value`.
+  parameters:
+    - name: slug
+      in: path
+      required: true
+      description: Slug ngành cấp 1. Tra danh sách hợp lệ qua `GET /market/sectors`.
+      schema:
+        type: string
+        enum:
+          - technology
+          - telecommunications
+          - healthcare
+          - financials
+          - real-estate
+          - consumer-discretionary
+          - consumer-staples
+          - industrials
+          - basic-materials
+          - energy
+          - utilities
+        example: financials
+  responses:
+    "200":
+      description: "`data` là dòng tiền khối ngoại cộng dồn của ngành trong phiên."
+      content:
+        application/json:
+          schema:
+            $ref: "../../components/schemas/market/SectorForeignTradingResponse.yaml"
+    "400":
+      $ref: "../../components/responses/BadRequest.yaml"
+    "401":
+      $ref: "../../components/responses/Unauthorized.yaml"
+    "404":
+      $ref: "../../components/responses/NotFound.yaml"
+    "429":
+      $ref: "../../components/responses/RateLimited.yaml"
+    "500":
+      $ref: "../../components/responses/InternalError.yaml"
+  x-codeSamples:
+    - lang: bash
+      label: cURL
+      source: |
+        curl -H "X-FH-APIKEY: $FINHAY_API_KEY" \
+          "https://open-api.fhsc.com.vn/market/sectors/financials/trading/foreign"

@@ -1,0 +1,37 @@
+get:
+  operationId: quotesGetStockOrderBookHistory
+  tags:
+    - market-data
+  summary: Lịch sử sổ lệnh cổ phiếu trong phiên
+  description: Các bản chụp sổ lệnh (bid/ask kèm tổng dư mua, dư bán) của 1 mã cổ phiếu VN trong phiên giao dịch hôm nay, chụp mỗi 5 phút. Chỉ có dữ liệu của ngày hiện tại; ngoài giờ giao dịch hoặc trước lần chụp đầu tiên `entries` là mảng rỗng. Cổ phiếu Mỹ trả 400.
+  parameters:
+    - name: symbol
+      in: path
+      required: true
+      description: 'Mã cổ phiếu (ticker). VD: VNM, FPT, AAPL.'
+      schema:
+        type: string
+        example: VNM
+  responses:
+    '200':
+      description: '`data.entries` là các bản chụp theo thứ tự thời gian.'
+      content:
+        application/json:
+          schema:
+            $ref: "../../components/schemas/market/QuoteOrderBookHistoryResponse.yaml"
+    '400':
+      $ref: "../../components/responses/BadRequest.yaml"
+    '401':
+      $ref: "../../components/responses/Unauthorized.yaml"
+    '404':
+      $ref: "../../components/responses/NotFound.yaml"
+    '429':
+      $ref: "../../components/responses/RateLimited.yaml"
+    '500':
+      $ref: "../../components/responses/InternalError.yaml"
+  x-codeSamples:
+    - lang: bash
+      label: cURL
+      source: |
+        curl -H "X-FH-APIKEY: $FINHAY_API_KEY" \
+          "https://open-api.fhsc.com.vn/market/quotes/stocks/VNM/order-book/history"
