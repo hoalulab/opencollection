@@ -1,10 +1,10 @@
-# VNBrokers OpenCollection
+# Hoalu OpenCollection
 
 [English](README.md)
 
 ## Giới thiệu
 
-**@vnbrokers/opencollection** là bộ sưu tập OpenAPI của các công ty chứng khoán/nền tảng giao dịch tài chính Việt Nam.
+**@hoalulab/opencollection** là bộ sưu tập OpenAPI của các công ty chứng khoán/nền tảng giao dịch tài chính Việt Nam.
 
 ## Cấu trúc dự án
 
@@ -36,7 +36,7 @@ Dự án được tổ chức thành ba phần chính:
 - **Bruno** — https://docs.usebruno.com
 - **OpenAPI Specification** — https://spec.openapis.org/oas/v3.1.0
 - **AsyncAPI Specification** — https://www.asyncapi.com/docs/specifications/3.0.0
-- **VNBrokers Mintlify Documentation** — https://vnbrokers.mintlify.app / https://vnbrokers.mintlify.site
+- **Hoalu Mintlify Documentation** — https://hoalulab.mintlify.app / https://hoalulab.mintlify.site
 
 ## Miễn trừ trách nhiệm
 

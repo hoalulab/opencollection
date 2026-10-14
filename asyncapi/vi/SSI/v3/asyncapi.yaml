@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://www.asyncapi.com/schema-store/3.0.0-without-$id.json
 asyncapi: 3.0.0
-id: urn:vnbrokers:ssi:v3:stream
+id: urn:hoalu:ssi:v3:stream
 info:
   title: SSI FastConnect WebSocket Stream API
   version: 3.0.0
