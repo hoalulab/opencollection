@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://www.asyncapi.com/schema-store/3.0.0-without-$id.json
 asyncapi: 3.0.0
-id: urn:vnbrokers:dnse:v2:stream
+id: urn:hoalu:dnse:v2:stream
 info:
   title: DNSE WebSocket Stream API
   version: 2.0.0

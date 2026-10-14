@@ -1,10 +1,10 @@
-# VNBrokers OpenCollection
+# Hoalu OpenCollection
 
 [Tiếng Việt](README.vi.md)
 
 ## Introduction
 
-**@vnbrokers/opencollection** is a collection of OpenAPIs from Vietnamese Securities Companies
+**@hoalulab/opencollection** is a collection of OpenAPIs from Vietnamese Securities Companies
 
 ## Project Structure
 
@@ -38,7 +38,7 @@ The project is organized into three main parts:
 - **Bruno** — https://docs.usebruno.com
 - **OpenAPI Specification** — https://spec.openapis.org/oas/v3.1.0
 - **AsyncAPI Specification** — https://www.asyncapi.com/docs/specifications/3.0.0
-- **VNBrokers Mintlify Documentation** — https://vnbrokers.mintlify.app / https://vnbrokers.mintlify.site
+- **Hoalu Mintlify Documentation** — https://hoalulab.mintlify.app / https://hoalulab.mintlify.site
 
 ## Disclaimer
 

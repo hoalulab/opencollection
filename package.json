@@ -1,8 +1,8 @@
 {
-  "name": "vnbrokers-opencollection",
+  "name": "@hoalulab/opencollection",
   "version": "4.0.1",
   "private": true,
-  "description": "OpenAPI specifications and bundled build artifacts for vnbrokers.",
+  "description": "OpenAPI specifications and bundled build artifacts for hoalu.",
   "scripts": {
     "lint:openapi:dnse": "npx --yes @redocly/cli@2.46.1 lint openapi/vi/DNSE/latest/openapi.yaml",
     "lint:openapi:entrade": "npx --yes @redocly/cli@2.46.1 lint openapi/vi/Entrade/latest/openapi.yaml",
