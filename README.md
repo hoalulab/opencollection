@@ -2,6 +2,12 @@
 
 [Tiếng Việt](README.vi.md)
 
+> [!WARNING]
+> **Maintenance Notice**
+>
+> Updates and new releases are temporarily paused while we review and strengthen the project's security workflows.
+> During this period, security improvements, dependency audits, and CI/CD workflow hardening will be prioritized over new features and routine updates.
+
 ## Introduction
 
 **@hoalulab/opencollection** is a collection of OpenAPIs from Vietnamese Securities Companies
