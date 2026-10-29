@@ -1,0 +1,28 @@
+name: microcks
+
+# Ephemeral local mocks only; no broker credentials or external persistence.
+services:
+  microcks:
+    image: quay.io/microcks/microcks-uber:1.15.0@sha256:97e74ff545d020f9f20141a0edc4ec1a99f32b7bfeacc81aadd47d8ffc642ffe
+    ports:
+      - "127.0.0.1:8585:8080"
+    environment:
+      ASYNC_MINION_URL: http://async-minion:8081
+      OTEL_SDK_DISABLED: "true"
+      MICROCKS_HOST: localhost:8585
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "--silent", "http://localhost:8080/api/health"]
+      interval: 5s
+      timeout: 3s
+      retries: 36
+      start_period: 20s
+
+  async-minion:
+    image: quay.io/microcks/microcks-uber-async-minion:1.15.0@sha256:51a391298fa81315274bc92be360964bb1bb33c88de016610e47839a291881de
+    ports:
+      - "127.0.0.1:8586:8081"
+    environment:
+      MICROCKS_HOST_PORT: microcks:8080
+    depends_on:
+      microcks:
+        condition: service_healthy
