@@ -10,6 +10,7 @@ get:
       required: true
       schema:
         type: string
+      example: HPG
     - name: boardId
       in: query
       required: false

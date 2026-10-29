@@ -21,14 +21,15 @@ get:
       description: Thời gian bắt đầu (timestamp).
       schema:
         type: string
-      example: "1788915600"
+      # Match the September 10 response fixture, keeping the original two-hour window.
+      example: "1789002000"
     - name: to
       in: query
       required: true
       description: Thời gian kết thúc (timestamp).
       schema:
         type: string
-      example: "1788922800"
+      example: "1789009200"
     - name: limit
       in: query
       required: false
@@ -55,7 +56,9 @@ get:
       description: Token dùng để lấy trang tiếp theo.
       schema:
         type: string
-      example: NDYwMTQ1XzIwMjYtMDMtMTJUMDQ6MjU6MDUuNTZa
+      examples:
+        nextPage:
+          value: NDYwMTQ1XzIwMjYtMDMtMTJUMDQ6MjU6MDUuNTZa
   responses:
     "200":
       description: OK

@@ -12,11 +12,21 @@ get:
       required: true
       schema:
         type: string
+      examples:
+        STOCK:
+          value: "0001179019"
+        DERIVATIVE:
+          value: "0001179019"
     - name: orderId
       in: path
       required: true
       schema:
         type: string
+      examples:
+        STOCK:
+          value: "1651"
+        DERIVATIVE:
+          value: "26"
     - name: marketType
       in: query
       required: true
@@ -27,7 +37,11 @@ get:
           - STOCK
           - DERIVATIVE
       description: "Loại thị trường \n- STOCK: Lệnh cơ sở\n- DERIVATIVE: Lệnh phái sinh\n- BOND: Lệnh trái phiếu"
-      example: DERIVATIVE
+      examples:
+        STOCK:
+          value: STOCK
+        DERIVATIVE:
+          value: DERIVATIVE
     - name: orderCategory
       in: query
       schema:

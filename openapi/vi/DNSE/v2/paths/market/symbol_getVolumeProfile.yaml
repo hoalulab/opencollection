@@ -18,6 +18,7 @@ get:
       description: Mã chứng khoán
       schema:
         type: string
+      example: ACB
     - name: boardId
       in: query
       required: false
@@ -30,11 +31,13 @@ get:
         - T4: Thỏa thuận lô lẻ trong giờ (9h - 14h45)
         - T6: Thỏa thuận lô lẻ sau giờ  (14h45 - 15h)
       schema: {}
+      example: G1
     - name: time
       in: query
       required: false
       description: Ngày giao dịch cần lấy dữ liệu (YYYY-MM-DD)
       schema: {}
+      example: "2026-09-25"
   responses:
     "200":
       description: OK

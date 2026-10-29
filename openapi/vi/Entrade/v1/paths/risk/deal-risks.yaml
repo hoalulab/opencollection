@@ -16,7 +16,8 @@ post:
       content:
         application/json:
           schema:
-            oneOf:
+            # Extensible object shapes can overlap; matching either is valid.
+            anyOf:
               - $ref: ../../components/schemas/risk/TakeProfitRequest.yaml
               - $ref: ../../components/schemas/risk/RiskConfigV1.yaml
     "400":

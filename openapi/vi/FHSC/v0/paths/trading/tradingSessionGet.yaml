@@ -15,6 +15,7 @@ get:
       description: Mã sàn giao dịch (`HOSE`, `HNX`, `UPCOM`).
       schema:
         $ref: "../../components/schemas/market/Exchange.yaml"
+      example: HOSE
   responses:
     "200":
       description: Trả về `result` chứa `exchange_session` (trạng thái phiên) và `available_order_types` (mảng order type khả dụng).

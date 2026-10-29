@@ -14,7 +14,7 @@ parameters:
     deprecated: false
     schema:
       type: string
-    example: "96"
+    example: "1626"
 
 post:
   operationId: account_placeOrder
@@ -113,6 +113,12 @@ get:
     - $ref: ../../components/parameters/XApiKey.yaml
     - $ref: ../../components/parameters/XAuxDate.yaml
     - $ref: ../../components/parameters/XSignature.yaml
+    - name: orderId
+      in: path
+      required: true
+      schema:
+        type: string
+      example: "966"
     - name: marketType
       in: query
       required: true

@@ -24,7 +24,9 @@ get:
         - HCX: Trái phiếu doanh nghiệp
       schema:
         $ref: ../../components/schemas/enums/MarketId.yaml
-      example: STO
+      examples:
+        filtered:
+          value: STO
     - name: securityGroupId
       in: query
       description: |-
@@ -42,7 +44,9 @@ get:
       description: "Chỉ số thị trường \n- VN30: Top 30 cổ phiếu sàn HOSE\n- VN100: Top 100 cổ phiếu sàn HOSE\n- HNX30: Top 30 cổ phiếu sàn HNX"
       schema:
         $ref: ../../components/schemas/enums/MarketIndex.yaml
-      example: VN30
+      examples:
+        filtered:
+          value: VN30
     - name: limit
       in: query
       description: Số bản ghi trên mỗi trang

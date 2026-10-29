@@ -30,7 +30,8 @@ post:
       content:
         application/json:
           schema:
-            oneOf:
+            # Extensible object shapes can overlap; matching either is valid.
+            anyOf:
               - $ref: ../../components/schemas/derivatives/CloseDealResult.yaml
               - $ref: ../../components/schemas/derivatives/DerivativeDealPage.yaml
     "400":

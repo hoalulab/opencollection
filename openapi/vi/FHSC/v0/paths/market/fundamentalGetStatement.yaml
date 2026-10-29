@@ -31,6 +31,7 @@ get:
       description: Loại báo cáo.
       schema:
         $ref: "../../components/schemas/market/FinancialStatementType.yaml"
+      example: cash-flow
     - name: period
       in: query
       required: false
@@ -59,7 +60,7 @@ get:
     - name: year
       in: query
       required: false
-      description: 'Chỉ lấy kỳ của năm này: `period=annual` trả 1 row, `period=quarterly` trả các quý của năm (quý mới nhất trước).'
+      description: "Chỉ lấy kỳ của năm này: `period=annual` trả 1 row, `period=quarterly` trả các quý của năm (quý mới nhất trước)."
       schema:
         type: integer
         minimum: 1

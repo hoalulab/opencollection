@@ -13,24 +13,28 @@ get:
       description: Mã chứng khoán
       schema:
         type: string
+      example: HPG
     - name: boardId
       in: query
       required: true
       description: Mã bảng giao dịch
       schema:
         $ref: ../../components/schemas/enums/BoardId.yaml
+      example: G1
     - name: from
       in: query
       required: true
       description: Thời gian bắt đầu theo Unix timestamp
       schema:
         type: string
+      example: "1785742800"
     - name: to
       in: query
       required: true
       description: Thời gian kết thúc; khoảng truy vấn không vượt quá một ngày
       schema:
         type: string
+      example: "1785829200"
     - name: limit
       in: query
       schema:

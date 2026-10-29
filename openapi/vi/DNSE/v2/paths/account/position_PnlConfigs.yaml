@@ -12,6 +12,7 @@ get:
       required: true
       schema:
         type: string
+      example: "177952229647243"
     - name: marketType
       in: query
       required: true
@@ -69,6 +70,7 @@ post:
       required: true
       schema:
         type: string
+      example: "177952229647243"
   requestBody:
     required: true
     content:
